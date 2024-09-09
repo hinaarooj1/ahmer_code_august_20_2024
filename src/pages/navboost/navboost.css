@@ -1,0 +1,107 @@
+.navboost-main {
+  .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+
+    h1 {
+      font-size: 30px;
+      font-family: Terminator;
+    }
+
+    span {
+      font-family: minecraft;
+      font-weight: 300;
+    }
+  }
+
+  .mid-section-navboost {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .mid-section-navboost > div:nth-child(2) {
+    .videobox {
+      width: 390px;
+      height: 425px;
+      background-size: contain;
+      background-repeat: no-repeat;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      video{
+        width:  150px;
+        height: 300px;
+      }
+    }
+  }
+
+  .mid-section-navboost > div:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+     font-family: Terminator;
+     ul li{
+       font-family: minecraft;
+       font-size: 10px;
+       text-align: left;
+     }
+  }
+
+  .mid-section-navboost > div:last-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+     font-family: Terminator;
+     ul li{
+       font-family: minecraft;
+       font-size: 10px;
+       text-align: left;
+     }
+  }
+
+  .mid-section-navboost > div:nth-child(2) video {
+    background: transparent;
+    width: 100px;
+    height: 100px;
+  }
+
+  .five-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      width: 30px;
+      height: 30px;
+      border-radius: 100%;
+      background-color: red;
+    }
+  }
+
+  .red-box {
+    background-color: rgba(85, 10, 10, 0.699);
+    width: 180px;
+    height: 180px;
+    padding: 15px;
+    text-align: center;
+  }
+
+  .footer-navboost {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-family: minecraft;
+  }
+}

@@ -1,0 +1,16 @@
+.tickets-data h1 {
+    position: absolute;
+    bottom: 260px;
+    left: 330px;
+    text-align: center;
+
+}
+
+.tickets-data h1 span {
+    font-family: 'Terminator';
+
+    font-size: 12px;
+    margin-bottom: 1px;
+    display: block;
+
+}

@@ -1,0 +1,99 @@
+.staking-container {
+    max-width: 1491px;
+    margin-inline: auto;
+    margin-top: 197px;
+}
+
+@media (min-width:1460px) {
+    .staking-container {
+        max-width: 75%;
+        margin-left: 20% !important;
+        margin-top: 157px;
+    }
+}
+
+.staking-con .child-wrap-staking .choose-pool {
+    font-size: 20px !important;
+}
+
+.staking-con .child-wrap-staking {
+    background-color: #000000cf !important;
+}
+
+.choose-pool, .staking-head {
+    font-family: 'termin-font';
+}
+
+.staking-container .para {
+    font-family: sharetechmono !important;
+}
+
+
+.navbar.navbar-side {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.top-box {
+    box-shadow: rgb(0 0 0) 0px 20px 20px 8px;
+    background-color: rgba(0, 0, 0, 0.8) !important;
+}
+
+.staking-con {
+    margin-top: 50px;
+    height: 100%;
+    /* border: 8px solid rgba(205, 26, 39, 1); */
+    border-radius: 12px;
+    border: 2px solid red;
+    animation: neon-glow 4.5s infinite alternate;
+    /* box-shadow: #cd1a2780 0 2px 4px, #cd1a2780 0 2px 16px; */
+    position: relative;
+    margin-bottom: 50px;
+    /* box-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 40px #ff0000; */
+
+}
+
+
+@keyframes neon-glow {
+    from {
+        box-shadow: 0 0 10px rgba(255, 7, 58, 0.8), 0 0 20px rgba(255, 7, 58, 0.6);
+    }
+
+    to {
+        box-shadow: 0 0 15px rgba(255, 7, 58, 1), 0 0 25px rgba(255, 7, 58, 0.8);
+    }
+
+    /* 100% {
+        box-shadow: 0 0 10px rgba(255, 7, 58, 0.8), 0 0 20px rgba(255, 7, 58, 0.6);
+    } */
+
+    /* 
+    to {
+        box-shadow: 0 0 8px #ff0000, 0 0 15px #ff0000, 0 0 20px #ff0000;
+    } */
+}
+
+@media (min-width:1460px) {
+    .main-sidebar::after {
+        transform: rotate(180deg);
+        top: 0;
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 268px;
+        width: 62px;
+        height: 100%;
+        background: linear-gradient(to left, #000000 20%, rgba(0, 0, 0, 0));
+        z-index: 999999996;
+    }
+
+
+}
+
+@media (max-width:1460px) {
+    .staking-container {
+        max-width: 100%;
+        margin-left: 0;
+        margin-top: 100px;
+    }
+
+}
