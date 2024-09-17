@@ -13,7 +13,7 @@ import { Button } from "@mui/material";
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { useWallet } from "@solana/wallet-adapter-react";
 
-
+let BASE_URL = 'http://localhost:4000'
 export default function Home() {
     const [roll, setRoll] = useState({})
     const [userSOLBalance, setSOLBalance] = useState(0);
@@ -32,9 +32,9 @@ export default function Home() {
 
     const fetchLoadingData = async () => {
         try {
-            const response = await axios.post("https://slotnew.testdrivesite.com/api/admin/landing/getLanding", {
+            const response = await axios.post(`${BASE_URL}/api/admin/landing/getLanding`, {
                 headers: {
-                    'Access-Control-Allow-Origin': '*',  // Replace '*' with your domain
+                    'Access-Control-Allow-Origin': 'http://localhost:3000',  // Replace '*' with your domain
                     'Access-Control-Allow-Methods': 'POST, GET',
                     'Access-Control-Allow-Headers': 'Content-Type',
                 }
@@ -51,9 +51,9 @@ export default function Home() {
 
     const fetchData = async () => {
         try {
-            const allData = await axios.post("https://slotnew.testdrivesite.com/api/getSlotData", {
+            const allData = await axios.post(`${BASE_URL}/api/getSlotData`, {
                 headers: {
-                    'Access-Control-Allow-Origin': '*',
+                    'Access-Control-Allow-Origin': 'http://localhost:3000',
                     'Access-Control-Allow-Methods': 'POST, GET',
                     'Access-Control-Allow-Headers': 'Content-Type',
                 }
@@ -112,9 +112,9 @@ export default function Home() {
                 const form = new FormData();
                 //@ts-ignore
                 form.append('address', resp.publicKey.toString());
-                const rollData = await axios.post("https://slotnew.testdrivesite.com/api/buyRoll/getRoll", form, {
+                const rollData = await axios.post(`${BASE_URL}/api/buyRoll/getRoll`, form, {
                     headers: {
-                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Origin': 'http://localhost:3000',
                         'Access-Control-Allow-Methods': 'POST, GET',
                         'Access-Control-Allow-Headers': 'Content-Type',
                     }

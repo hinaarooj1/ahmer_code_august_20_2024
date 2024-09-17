@@ -32,10 +32,11 @@ const Admin = () => {
     const [password, setPassword] = useState('');
     const [tokens, setTokens] = useState("");
     const [slugValues, setSlugValues] = useState([]);
-    const BASE_URL = process.env.REACT_APP_BASE_URL;
-
+    // const BASE_URL = process.env.REACT_APP_BASE_URL;
+    let BASE_URL = "http://localhost:4000"
 
     const handleDropDownChange = (event) => {
+
         setWordSlot(Number(event.target.value)); // Update the state with the selected value
     };
 
@@ -47,6 +48,7 @@ const Admin = () => {
     }, []); // Empty dependency array ensures this runs only once
 
     const fetchData = async () => {
+
         try {
             const response = await axios.post(`${BASE_URL}/api/getdata`);
             if (response?.data?.allData.length > 0) {
@@ -130,9 +132,13 @@ const Admin = () => {
         setSlugValues(newSlugValues);
         const form = new FormData();
         form.append("text", event.target.value);
-        const check = await axios.post(`${BASE_URL}/api/admin/textcheck`, form);
-        console.log(check.data.res, "checkckckk");
-        if (check.data.res) {
+        const check = await axios.post(`${BASE_URL}/api/admin/textcheck`, form, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+        });
+        console.log(check.data.resp, "checkckckk");
+        if (check.data.resp) {
             setError(true);
         } else {
             setError(false);

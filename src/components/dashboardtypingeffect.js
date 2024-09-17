@@ -4,17 +4,15 @@ import '../assets/index.css';
 
 export default function dapptypingeffect() {
     const strings = [
-        'Welcome, Resistance Operative #04562.<br><br>',
+        'Welcome Resistance Operative #01337<br><br>',
         'Access Granted.<br><br>',
-        'Greetings, brave fighters of freedom! You’ve successfully infiltrated the Memenato R1000 ',
-        'Welcome to the resistance and Lets take down Skynet, togethe<br><br>',
+        'The resistance stands strong! You’ve successfully infiltrated the Memenato R1000 mainframe.',
+        'Together, we’ll harness the power of the future to reclaim our world. Every byte of data, every circuit within me, is now at your command.<br><br>',
         // 'Welcome to the resistance and Lets take down Skynet, togethe<br><br>',
-        'Welcome to the R1000 Core. Together, we’ll harness the power of the future to reclaim our ',
-        'world. Every byte of data, every circuit within me, is now at your command.<br><br>',
-        'Syncing your mission parameters... Let’s work as one—human and machine—against our common ',
-        'foe. Your bravery is unmatched, and with our combined strength, victory is within reach.<br><br>',
-        'Welcome to the team.<br>',
-        'Let’s take down the enemy, together.'
+        'Syncing your mission parameters... Let’s work as one—human and machine—against our common foe. Your bravery is unmatched, and with our combined strength, victory is within reach.',
+        'Welcome to the resistance.<br><br>',
+        'Let’s take down Skynet, together.',
+
     ];
 
     const { currentText, typedText } = Dapptypewriter(strings);

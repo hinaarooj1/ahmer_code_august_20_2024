@@ -1,8 +1,12 @@
 "use client";
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import musicWav from "../../../assets/music/music.wav";
 import { useNavigate } from "react-router-dom";
+// import html2canvas from 'html2canvas';
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
-import axios from "axios";
+import slot_machine from '../../../assets/new_image/slot-machine.png';
+import axios from "axios"; 
+// import Image from "next/image";
 import { clusterApiUrl } from "@solana/web3.js";
 import { WalletAdapterNetwork, WalletError } from "@solana/wallet-adapter-base";
 import LoseOrWin from "./LoseOrWin";
@@ -10,9 +14,7 @@ import copy from 'copy-to-clipboard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
 import Notification from "./Notification";
-import { Link } from "react-router-dom";
-import slot_machine from '../../../assets/new_image/slot-machine.png';
-import './spinner.css'
+let BASE_URL = 'http://localhost:4000';
 const Spinner = ({
   state,
   loadingFile,
@@ -23,7 +25,7 @@ const Spinner = ({
   setRoll,
   paramsSlug
 }) => {
-  const navigate = useNavigate(); // Replacing useRouter with useNavigate
+  const navigate = useNavigate();
   const [snapshot, setSnapshot] = useState(null);
   const [allSlug, setAllSlug] = useState(paramsSlug || "");
   const [clicked, setClicked] = useState(false);
@@ -33,17 +35,16 @@ const Spinner = ({
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [status, setStatus] = useState(false);
   const [disable, setDisable] = useState(false);
-  const [id, setId] = useState(null);
+  const [id, setId] = useState(null)
   const [views, setViews] = useState(0);
   const [url, setUrl] = useState("");
   const [showDiv, setShowDiv] = useState(false);
-  const [showImage, setShowImage] = useState(false);
-  const [message, setMessage] = useState(null);
-  const [temp, setTemp] = useState(null);
+  const [showImage, setShowImage] = useState(false)
+  const [message, setMessage] = useState(null)
+  const [temp, setTemp] = useState(null)
   const [output, setOutput] = useState([]);
-  const [slugCount, setSlugCount] = useState(0);
+  const [slugCount, setSlugCount] = useState(0)
   const network = WalletAdapterNetwork.Devnet;
-
   function shouldRenderDiv(allSlug) {
     var elements = allSlug.split("-");
 
@@ -59,19 +60,38 @@ const Spinner = ({
     const result = first === third && first === fifth && third === fifth;
     return result;
   }
-
   const walletConnectionErr = (error = WalletError) => {
     console.log("Wallet Connection Error:", error);
   };
-
+  // console.log(walletConnectionErr, "walletConnectionErr");
   const sendMoney = () => {
     console.log("first");
   };
-
+  // const toggleDropdown = () => {
+  //   setIsDropdownOpen(!isDropdownOpen);
+  // };
   const handleDropdownChange = (value) => {
     setIsDropdownOpen(false);
   };
+  // const takeSnapshot = () => {
+  //   navigate(`/share/${allSlug.slice(0)}`);
+  // const divToCapture = document.getElementById("mainDiv");
+  // console.log(divToCapture, "divvvvvv");
 
+  // toPng(divToCapture)
+  //   .then(async function (dataUrl) {
+  //     const form = new FormData();
+  //     form.append("file", dataUrl);
+  //     const res=await axios.post("api/share",form)
+  //     console.log(res.data.FinalData,"ressssss")
+  //     navigate(`/share/${res.data.FinalData}`);
+  //     setSnapshot(dataUrl);
+  //   })
+  //   .catch(function (error) {
+  //     console.error("oops, something went wrong!", error);
+  //   });
+  // };
+  // console.log(allSlug, "allSlugallSlugallSlug");
   const takeSnapImage = () => {
     setLoader(true);
     const divToCapture = document.getElementById("mainDiv");
@@ -79,7 +99,7 @@ const Spinner = ({
 
     toJpeg(divToCapture)
       .then(async function (dataUrl) {
-        console.log(dataUrl, "dataUrldataUrl");
+        console.log(dataUrl, "dataUrldataUrl")
         const canvas = document.createElement('canvas'); // Create a new canvas element
         const ctx = canvas.getContext('2d');
         const img = new Image();
@@ -101,43 +121,29 @@ const Spinner = ({
 
           // Add the watermark text
           ctx.fillText("memenator.com", canvas.width - 10, canvas.height - 10);
-          console.log(canvas, "Ddd");
-
+          console.log(canvas, "Ddd")
           // Convert canvas to data URL with watermark
           const watermarkedDataUrl = canvas.toDataURL();
-          console.log(watermarkedDataUrl, "watttttt");
-
+          console.log(watermarkedDataUrl, "watttttt")
           // Create FormData and append the watermarked image
+
           try {
             const form = new FormData();
             form.append("file", watermarkedDataUrl);
-
             // Send FormData to API endpoint using axios
-            const response = await axios.post("https://slotnew.testdrivesite.com/api/share", form, {
-              headers: {
-                'Access-Control-Allow-Origin': '*',  // Replace '*' with your domain
-                'Access-Control-Allow-Methods': 'POST, GET',
-                'Access-Control-Allow-Headers': 'Content-Type',
-              }
-            });
+            const response = await axios.post("api/share", form);
             console.log(response.data.FinalData);
             setLoader(false);
-
             // Open the share link in a new tab
-            const res = await axios.post(`https://slotnew.testdrivesite.com/api/share/image/${response.data.FinalData}`, {
-              headers: {
-                'Access-Control-Allow-Origin': '*',  // Replace '*' with your domain
-                'Access-Control-Allow-Methods': 'POST, GET',
-                'Access-Control-Allow-Headers': 'Content-Type',
-              }
-            });
+            const res = await axios.post(`${BASE_URL}/api/share/image/${response.data.FinalData}`);
             setUrl(res.data.output.Sharefile);
-            setId(response.data.FinalData);
-
+            setId(response.data.FinalData)
+            // window.open(`/share/image/${response.data.FinalData}`, "_blank");
             setSnapshot(dataUrl); // Optionally set the original image URL to state
           } catch (error) {
             console.error("Error uploading image:", error);
             setLoader(false);
+            // Handle error, e.g., show error message
           }
         };
       })
@@ -145,23 +151,24 @@ const Spinner = ({
         console.error("oops, something went wrong!", error);
       });
   };
-
   const handleButtonClick = () => {
-    navigate("/admin"); // Replacing router.push with navigate
+    navigate("/admin");
   };
+  const audioUrl = musicWav;
 
-  const audioUrl = "/music.mp3";
-
+  // console.log(loadingFile, "i am inslinner");
   const playAudio = async () => {
     const audio = new Audio(audioUrl);
     audio.loop = false;
     await audio.play();
+    // setAudioPlayed(true);
   };
 
   let final;
   if (state) {
     final = state
       .map((item) => {
+        // console.log(item, "tiememem");
         if (item.text1 || item.text2) {
           if (item.text1) {
             return { type: "text1", value: item.text1 };
@@ -171,7 +178,7 @@ const Spinner = ({
         } else if (item.file) {
           return { type: "image", value: item.file };
         }
-        return null;
+        return null; // Ensure to handle other types of content properly if any
       })
       .filter((item) => item !== null); // Remove null items if any
   }
@@ -180,10 +187,14 @@ const Spinner = ({
     let items = final;
 
     const doors = document.querySelectorAll(".door");
+    // let spinCount = 0;
 
     const spin = async () => {
       const slideDuration = 7000;
       let delayBetweenDoors = 600; // initial delay
+
+
+
 
       // Update content
       updateContent();
@@ -281,17 +292,16 @@ const Spinner = ({
                 } else {
                   const text = visibleBox.textContent.trim();
 
-                  // type = "text" + (i === 1 ? 1 : 2);
-                  type = `text${i === 1 ? 1 : 2}`;
+                  type = "text" + (i === 1 ? 1 : 2);
                   const correspondingStateItem = state.find(
                     (item) => item[type] === text
                   );
-                  console.log(state, "Gggggggggggggggggg");
                   slug = correspondingStateItem
                     ? correspondingStateItem.Slug
                     : "";
 
                   value = text;
+                  // console.log(slug, "Gggggggggggggggggg");
                 }
                 visibleContent.push({ type, value, slug });
               }
@@ -338,58 +348,65 @@ const Spinner = ({
         const boxes = door.querySelector(".boxes");
         const boxesClone = boxes.cloneNode(false);
 
-        let pool;
+        let pool = [];
         if (i === 1) {
           // Only text for 2nd and 4th door
-          pool = items?.filter((item) => item.type === "text1");
+          pool = items?.filter((item) => item.type === "text1") || [];
         } else if (i === 3) {
-          pool = items?.filter((item) => item.type === "text2");
+          pool = items?.filter((item) => item.type === "text2") || [];
         } else {
           // Images/emojis for other doors
-          pool = items?.filter((item) => item.type == "image");
+          pool = items?.filter((item) => item.type === "image") || [];
+        }
+
+        // Check if pool is empty
+        if (pool.length === 0) {
+          console.warn(`No items found for door ${i}`);
+          continue; // Skip this door if no items are found
         }
 
         // Shuffle the pool to randomize content
         pool = shuffle(pool);
+        console.log('pool: ', pool.length);
 
-        for (let i = pool.length - 1; i >= 0; i--) {
+        for (let j = pool.length - 1; j >= 0; j--) {
           const box = document.createElement("div");
           box.classList.add("box");
           box.style.width = `${door.clientWidth / 5}px`;
           box.style.height = door.clientHeight + "px";
-          if (pool[i].type === "emoji") {
-            box.textContent = pool[i].value;
-          } else if (pool[i].type === "image") {
+          if (pool[j].type === "emoji") {
+            box.textContent = pool[j].value;
+          } else if (pool[j].type === "image") {
             const image = document.createElement("img");
-            image.src = pool[i].value;
+            image.src = pool[j].value;
             image.alt = "Image";
             image.style.width = "100%";
             image.style.height = "100%";
             box.appendChild(image);
-          } else if (pool[i].type === "text1") {
-            box.textContent = pool[i].value;
-          } else if (pool[i].type === "text2") {
-            box.textContent = pool[i].value;
+          } else if (pool[j].type === "text1" || pool[j].type === "text2") {
+            box.textContent = pool[j].value;
           }
           boxesClone.appendChild(box);
         }
+
         boxesClone.style.transitionDuration = `${duration > 0 ? duration : 1}s`;
-        boxesClone.style.transform = `translateY(-${door.clientHeight * (pool.length - 1)
-          }px)`;
+        boxesClone.style.transform = `translateY(-${door.clientHeight * (pool.length - 1)}px)`;
         door.replaceChild(boxesClone, boxes);
       }
     };
 
+
     const shuffle = (arr) => {
-      if (!arr || !arr.length) {
-        return []; // Handle cases where arr is null, undefined, or empty
+      if (!Array.isArray(arr) || arr.length === 0) {
+        // If `arr` is not an array or is empty, return it as is.
+        return arr;
       }
 
       let currentIndex = arr.length;
       let temporaryValue, randomIndex;
 
       // While there remain elements to shuffle...
-      while (currentIndex !== 0) {
+      while (currentIndex > 0) {
         // Pick a remaining element...
         randomIndex = Math.floor(Math.random() * currentIndex);
         currentIndex -= 1;
@@ -402,8 +419,6 @@ const Spinner = ({
 
       return arr;
     };
-
-
 
 
 
@@ -421,16 +436,10 @@ const Spinner = ({
       }
 
       try {
-        if (address && (roll.roll)) {
+        if (address && (roll.roll )) {
 
           (async function () {
-            const resp = await axios.post("https://slotnew.testdrivesite.com/api/rollCount", form, {
-              headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'POST, GET',
-                'Access-Control-Allow-Headers': 'Content-Type',
-              }
-            });
+            const resp = await axios.post("/api/rollCount", form);
             // console.log(resp.data, "Response from server");
             setRoll(resp.data.allRoll)
           })();
@@ -457,16 +466,10 @@ const Spinner = ({
       }
 
       try {
-        if (address && (roll.roll)) {
+        if (address && (roll.roll )) {
 
           (async function () {
-            const resp = await axios.post("https://slotnew.testdrivesite.com/api/rollCount", form, {
-              headers: {
-                'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Methods': 'POST, GET',
-                'Access-Control-Allow-Headers': 'Content-Type',
-              }
-            });
+            const resp = await axios.post("/api/rollCount", form);
             console.log(resp.data, "Response from server");
             setRoll(resp.data.allRoll)
 
@@ -597,13 +600,7 @@ const Spinner = ({
         const response = await axios.get('https://api.ipify.org?format=json');
         if (response && id) {
           //@ts-ignore
-          const ViewData = await axios.post(`https://slotnew.testdrivesite.com/api/view/${response.data.ip}/${id}`, {
-            headers: {
-              'Access-Control-Allow-Origin': '*',
-              'Access-Control-Allow-Methods': 'POST, GET',
-              'Access-Control-Allow-Headers': 'Content-Type',
-            }
-          });
+          const ViewData = await axios.post(`${BASE_URL}/api/view/${response.data.ip}/${id}`);
           setViews(ViewData.data.Views)
           setIp(response.data.ip);
         }
@@ -618,13 +615,7 @@ const Spinner = ({
     const data = async () => {
       if (id) {
         //@ts-ignore
-        const res = await axios.post(`https://slotnew.testdrivesite.com/api/share/image/${id}`, {
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'POST, GET',
-            'Access-Control-Allow-Headers': 'Content-Type',
-          }
-        });
+        const res = await axios.post(`${BASE_URL}/api/share/image/${id}`);
 
         setUrl(res.data.output.Sharefile);
       }
@@ -640,13 +631,7 @@ const Spinner = ({
         const form = new FormData();
         form.append("allSlug", allSlug);
         form.append("ip", response.data.ip);
-        const SlugView = await axios.post("https://slotnew.testdrivesite.com/api/slug", form, {
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'POST, GET',
-            'Access-Control-Allow-Headers': 'Content-Type',
-          }
-        })
+        const SlugView = await axios.post(`${BASE_URL}/api/slug`, form)
         setSlugCount(SlugView.data.ipCount)
       }
       findViewOfSlug()
@@ -670,13 +655,7 @@ const Spinner = ({
     const data = async () => {
       if (concatenatedString) {
         //@ts-ignore
-        const res = await axios.post(`https://slotnew.testdrivesite.com/api/share/getData/${concatenatedString}`, {
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'POST, GET',
-            'Access-Control-Allow-Headers': 'Content-Type',
-          }
-        });
+        const res = await axios.post(`${BASE_URL}/api/share/getData/${concatenatedString}`);
         setOutput(res.data.data);
       }
     };
@@ -687,13 +666,7 @@ const Spinner = ({
   }
   const copySlugUrl = () => {
     setMessage("link copied")
-    copy(`https://slotnew.testdrivesite.com/?slug=${allSlug.slice(0)}`, {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Methods': 'POST, GET',
-        'Access-Control-Allow-Headers': 'Content-Type',
-      }
-    });
+    copy(`https://slotnew.testdrivesite.com/?slug=${allSlug.slice(0)}`);
     let temps
     let arr = []
     if (allSlug) {
@@ -711,14 +684,9 @@ const Spinner = ({
     console.log(concatenatedString, "concatenatedStringconcatenatedString");
     const data = async () => {
       if (concatenatedString) {
+
         //@ts-ignore
-        const res = await axios.post(`https://slotnew.testdrivesite.com/api/share/getData/${concatenatedString}`, {
-          headers: {
-            'Access-Control-Allow-Origin': '*',
-            'Access-Control-Allow-Methods': 'POST, GET',
-            'Access-Control-Allow-Headers': 'Content-Type',
-          }
-        });
+        const res = await axios.post(`${BASE_URL}/api/share/getData/${concatenatedString}`);
         // console.log(res, "ressss")
         setOutput(res.data.data);
       }
@@ -738,17 +706,16 @@ const Spinner = ({
   const rollValue = roll && roll.roll !== undefined ? roll.roll : '00';
 
   const handleClick = () => {
-    // if (roll.roll === undefined) {
-    //   router.push("/buy")
-    // }
+    if (roll.roll === undefined) {
+      navigate("/buy")
+    }
   };
-
   return (
     <div className="main-slot">
       <img src={slot_machine} alt="" />
       {message && <Notification message={message} />}
       {slugCount > 0 && <h4 className="slugCount">Slug View: {slugCount}</h4>}
-      {/* <div className="doors-outer">
+      <div className="doors-outer">
         <div className="doors" id="mainDiv">
           <div className="door-w">
             <div className="door">
@@ -793,7 +760,7 @@ const Spinner = ({
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
       {/* <div className="word-boxes">
         <div className="inner-slot">
 
@@ -823,7 +790,6 @@ const Spinner = ({
 
         <button
           id="spinnerFree"
-          disabled={disable}
         >
           <a class='holo-btn-reb' href='#'>
             <span class='cta-x'>Free Spin</span>
@@ -1003,21 +969,24 @@ const Spinner = ({
 
 export default Spinner;
 
-
 const Modal = (loader) => {
   return (
     <>
       {loader && (
-        <div className="loader-fixed inset-0 z-50 d-flex align-items-center justify-content-center bg-dark bg-opacity-50">
-          <div className="bg-white loader-w-auto text-center p-4 rounded">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
+          <div className="bg-white w-auto justify-center text-center p-6 rounded-lg">
             {loader && (
               <button
                 type="button"
-                className="btn btn-primary position-relative d-flex align-items-center justify-content-center"
+                className="bg-indigo-500 mx-auto relative py-2 px-4 rounded-md flex items-center justify-center text-white"
               >
+                <svg
+                  className="animate-spin h-5 w-5 mr-3 absolute left-0"
+                  viewBox="0 0 24 24"
+                ></svg>
                 <span>
                   <div
-                    className="spinner-border spinner-border-sm"
+                    className="inline-block h-4 w-4 animate-spin rounded-full border-2 border-solid border-current border-e-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"
                     role="status"
                   ></div>{" "}
                   Processing...

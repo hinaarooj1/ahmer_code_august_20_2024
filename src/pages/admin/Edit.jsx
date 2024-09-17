@@ -9,7 +9,7 @@ const Edit = ({ setIsModalOpen, editableData, setState }) => {
   const [updatedFile, setUpdatedFile] = useState(null);
   const fileInputRef = useRef(null);
   const _id = editableData._id;
-  const BASE_URL = process.env.REACT_APP_BASE_URL;
+  const BASE_URL = "http://localhost:4000";
 
   const closeModal = () => {
     setIsModalOpen();

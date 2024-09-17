@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import Notification from "./Notification";
 // import { render } from "react-dom";
+let BASE_URL='  '
 interface EditProps {
     setIsModalOpen: (isOpen: boolean) => void;
     editableData: {
@@ -72,7 +73,7 @@ const _id=editableData._id
         //@ts-ignore
         form.append('upload', updatedFile); 
         form.append('_id', _id);
-        const res=  await axios.put("/api/admin/updateFile", form);
+      const res = await axios.put(`${BASE_URL}/api/admin/updateFile`, form);
         setMessage(res.data.message)
        fetchData()
        setTimeout(()=>{
@@ -81,7 +82,7 @@ const _id=editableData._id
        },2000)
     }else if(editedText){
       
-        const apiCall=await axios.put("/api/admin/updateText",{
+        const apiCall=await axios.put( `${BASE_URL}/api/admin/updateText`,{
             _id,editedText
         })
         console.log(apiCall,"apiCallapiCall")

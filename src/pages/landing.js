@@ -524,9 +524,17 @@ function Landing() {
       {/* containerStyle */}
 
       <div className="home" >
+        <div className="bg-animation">
+          {/* <div id="stars"></div>
+          <div id="stars2"></div>
+          <div id="stars3"></div>
+          <div id="stars4"></div> */}
+        </div>
+        {/* <div id="stars"></div>
+        <div id="stars2"></div>
+        <div id="stars3"></div> */}
         <CustomCursor />
         <div className="home-wrap">
-
           {/* Section 1 --- */}
           <section ref={sectionRef} className="video-banner">
             <Header2
@@ -1042,25 +1050,25 @@ function Landing() {
                       <div className="carousel-rotation-direction">
                         <ul className="carousel-item-wrapper-new  "  >
                           <li className="carousel-1 carousel-item-new carousel-item1"   >
-                            <a href="https://unsplash.com/de/fotos/ein-hohes-gebaude-mit-einer-uhr-an-der-seite-cI09n4yMIYc" target="_blank"></a>
+                            <a href="#" target="_blank"></a>
                           </li>
                           <li className="carousel-2 carousel-item-new carousel-item1"   >
-                            <a href="https://unsplash.com/de/fotos/ein-hohes-gebaude-mit-einer-uhr-an-der-seite-cI09n4yMIYc" target="_blank"></a>
+                            <a href="#" target="_blank"></a>
                           </li>
                           <li className="carousel-3 carousel-item-new carousel-item1"   >
-                            <a href="https://unsplash.com/de/fotos/ein-hohes-gebaude-mit-einer-uhr-an-der-seite-cI09n4yMIYc" target="_blank"></a>
+                            <a href="#" target="_blank"></a>
                           </li>
                           <li className="carousel-4 carousel-item-new carousel-item1"   >
-                            <a href="https://unsplash.com/de/fotos/ein-hohes-gebaude-mit-einer-uhr-an-der-seite-cI09n4yMIYc" target="_blank"></a>
+                            <a href="#" target="_blank"></a>
                           </li>
                           <li className="carousel-5 carousel-item-new carousel-item1"   >
-                            <a href="https://unsplash.com/de/fotos/ein-hohes-gebaude-mit-einer-uhr-an-der-seite-cI09n4yMIYc" target="_blank"></a>
+                            <a href="#" target="_blank"></a>
                           </li>
                           <li className="carousel-6 carousel-item-new carousel-item1"   >
-                            <a href="https://unsplash.com/de/fotos/ein-hohes-gebaude-mit-einer-uhr-an-der-seite-cI09n4yMIYc" target="_blank"></a>
+                            <a href="#" target="_blank"></a>
                           </li>
                           <li className="carousel-7 carousel-item-new carousel-item1"   >
-                            <a href="https://unsplash.com/de/fotos/ein-hohes-gebaude-mit-einer-uhr-an-der-seite-cI09n4yMIYc" target="_blank"></a>
+                            <a href="#" target="_blank"></a>
                           </li>
 
                           <li className="carousel-ground" />

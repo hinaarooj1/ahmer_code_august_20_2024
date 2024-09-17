@@ -557,7 +557,7 @@
 /*  */
 .carousel-1 {
     --_index: 1;
-    --_image-url: url(../assets/images/mobile02.png);
+    --_image-url: url(../assets/images/mobile01.png);
 }
 
 .carousel-2 {
@@ -567,33 +567,29 @@
 
 .carousel-3 {
     --_index: 3;
-    --_image-url: url(../assets/images/mobile02.png);
+    --_image-url: url(../assets/images/mobile03.png);
 }
 
 .carousel-4 {
     --_index: 4;
-    --_image-url: url(../assets/images/mobile02.png);
+    --_image-url: url(../assets/images/mobile04.png);
 }
 
 .carousel-5 {
     --_index: 5;
-    --_image-url: url(../assets/images/mobile02.png);
+    --_image-url: url(../assets/images/mobile05.png);
 }
 
 .carousel-6 {
     --_index: 6;
-    --_image-url: url(../assets/images/mobile02.png);
+    --_image-url: url(../assets/images/mobile06.png);
 }
 
 .carousel-7 {
     --_index: 7;
-    --_image-url: url(../assets/images/mobile02.png);
+    --_image-url: url(../assets/images/mobile07.png);
 }
 
-.carousel-8 {
-    --_index: 8;
-    --_image-url: url(../assets/images/mobile02.png);
-}
 
 .carousel-9 {
     --_index: 9;
@@ -686,6 +682,11 @@
     .roadmap-img.roadmap-inner {
         margin-top: 30px !important;
     }
+}
+
+.home {
+    background-image: url(../assets/bg.webp);
+    background-repeat: repeat;
 }
 
 /*

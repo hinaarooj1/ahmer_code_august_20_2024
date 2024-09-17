@@ -16,6 +16,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Burning } from "./pages/Burning/Burning";
 import Navboost from "./pages/navboost/Navboost.jsx";
+import Terminal from "./pages/terminal/Terminal.jsx";
 import Admin from "./pages/admin/Admin.jsx";
 import './app.css'
 import { Staking } from "./pages/Staking/Staking";
@@ -117,6 +118,7 @@ const App = () => {
           <Route path="/r1000_sniper" element={<Comingsoon text={text} />} />
           <Route path="/immortalize" element={<Comingsoon text={text} />} />
           <Route path="/gigaboost" element={<Navboost />} />
+          <Route path="/terminal" element={<Terminal />} />
           <Route path="/fmooners" element={<Comingsoon text={text} />} />
           <Route path="/ntfs" element={<Comingsoon text={text} />} />
           <Route path="/charity" element={<Comingsoon text={text} />} />
