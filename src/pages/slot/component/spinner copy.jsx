@@ -13,7 +13,7 @@ import Notification from "./Notification";
 import { Link } from "react-router-dom";
 import slot_machine from '../../../assets/new_image/slot-machine.png';
 import './spinner.css'
-let BASE_URL= "http://localhost:4000";
+let BASE_URL= "https://webservice-xjm7.onrender.com";
 const Spinner = ({
   state,
   loadingFile,

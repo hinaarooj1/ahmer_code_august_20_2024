@@ -9,7 +9,7 @@ const Edit = ({ setIsModalOpen, editableData, setState }) => {
   const [updatedFile, setUpdatedFile] = useState(null);
   const fileInputRef = useRef(null);
   const _id = editableData._id;
-  const BASE_URL = "http://localhost:4000";
+  const BASE_URL = "https://webservice-xjm7.onrender.com";
 
   const closeModal = () => {
     setIsModalOpen();

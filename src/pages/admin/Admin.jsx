@@ -33,7 +33,7 @@ const Admin = () => {
     const [tokens, setTokens] = useState("");
     const [slugValues, setSlugValues] = useState([]);
     // const BASE_URL = process.env.REACT_APP_BASE_URL;
-    let BASE_URL = "http://localhost:4000"
+    let BASE_URL = "https://webservice-xjm7.onrender.com"
 
     const handleDropDownChange = (event) => {
 
