@@ -13,7 +13,8 @@ app.use(cookieParser());
 
 const cron = require("node-cron");
 let ALLOWED_ORIGINS = [
-
+  "http://srv592701.hstgr.cloud",
+  "http://www.srv592701.hstgr.cloud",
   "http://localhost:3000",
   "http://localhost:3001",
   "http://localhost:3002",
