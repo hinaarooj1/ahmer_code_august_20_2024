@@ -12,8 +12,7 @@ import { WalletError } from "@solana/wallet-adapter-base";
 import { Button } from "@mui/material";
 import { useLocation, useSearchParams } from 'react-router-dom';
 import { useWallet } from "@solana/wallet-adapter-react";
-
-let BASE_URL = 'http://localhost:4000'
+import { BASE_URL } from '../../utils/constant.js';
 export default function Home() {
     const [roll, setRoll] = useState({})
     const [userSOLBalance, setSOLBalance] = useState(0);
@@ -190,10 +189,10 @@ export default function Home() {
             <PHWallet />
           </div> */}
             <div className='staking-container' style={{ background: 'transparent', marginTop: '155px' }}>
- 
+
                 <div className="giga-logo text-center">
-                    <h1> 
-                        GIGAPOT</h1>
+                    {/* <h1> 
+                        GIGAPOT</h1> */}
                     <button className="token-credit-value btn-double Terminator">100<span></span></button>
                 </div>
                 <br />

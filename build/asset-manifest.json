@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.7c9f2970.css",
-    "main.js": "/static/js/main.e93d91e6.js",
+    "main.css": "/static/css/main.5135af37.css",
+    "main.js": "/static/js/main.2878a043.js",
     "static/js/453.2e2b864e.chunk.js": "/static/js/453.2e2b864e.chunk.js",
     "static/media/footer_video.mp4": "/static/media/footer_video.cff6d110f6fa5979a4fe.mp4",
     "static/media/NewTL2.mp4": "/static/media/NewTL2.588d4fc9112d8649b757.298e6820ab9c1d488736.mp4",
@@ -44,7 +44,7 @@
     "static/media/03.png": "/static/media/03.5ea14caaf2c0eb5b4873.png",
     "static/media/6boxbackground.png": "/static/media/6boxbackground.10448c6ca519e809e4c9.png",
     "static/media/claimbackground.png": "/static/media/claimbackground.e0ac20210a148ad78610.png",
-    "static/media/slot-machine.png": "/static/media/slot-machine.9a00577d55d4dfe703e4.png",
+    "static/media/slot-machine.png": "/static/media/slot-machine.75eda86c84b75c64c2fe.png",
     "static/media/mmtr-logo.jpg": "/static/media/mmtr-logo.08d6a632ee70e3c81538.jpg",
     "static/media/slot-background.png": "/static/media/slot-background.31c28cd49353debf4f53.png",
     "static/media/background.png": "/static/media/background.823b91dde1a482f7c254.png",
@@ -97,12 +97,12 @@
     "static/media/copy.svg": "/static/media/copy.a42922d9e51d9776549ba0cd9483eb56.svg",
     "index.html": "/index.html",
     "static/media/check.svg": "/static/media/check.894a5365da73916aa027172e1a9f18eb.svg",
-    "main.7c9f2970.css.map": "/static/css/main.7c9f2970.css.map",
-    "main.e93d91e6.js.map": "/static/js/main.e93d91e6.js.map",
+    "main.5135af37.css.map": "/static/css/main.5135af37.css.map",
+    "main.2878a043.js.map": "/static/js/main.2878a043.js.map",
     "453.2e2b864e.chunk.js.map": "/static/js/453.2e2b864e.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7c9f2970.css",
-    "static/js/main.e93d91e6.js"
+    "static/css/main.5135af37.css",
+    "static/js/main.2878a043.js"
   ]
 }

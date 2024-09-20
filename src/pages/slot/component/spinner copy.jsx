@@ -13,7 +13,7 @@ import Notification from "./Notification";
 import { Link } from "react-router-dom";
 import slot_machine from '../../../assets/new_image/slot-machine.png';
 import './spinner.css'
-let BASE_URL= "https://webservice-xjm7.onrender.com";
+import { BASE_URL } from "../../../utils/constant";
 const Spinner = ({
   state,
   loadingFile,
@@ -823,7 +823,7 @@ const Spinner = ({
       <div className="buttons justify-content-center  relative">
 
         <button
-          id="spinnerFree" 
+          id="spinnerFree"
         >
           <a class='holo-btn-reb' href='#'>
             <span class='cta-x'>Free Spin</span>

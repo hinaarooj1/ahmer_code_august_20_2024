@@ -684,9 +684,11 @@
     }
 }
 
-.home {
-    background-image: url(../assets/bg.webp);
-    background-repeat: repeat;
+
+.faqvideo {
+    position: absolute;
+    top: 0;
+    width: 100%;
 }
 
 /*
@@ -813,21 +815,21 @@ carousel
 
 @keyframes carousel-rotation-reverse {
     from {
-        transform: translateZ(var(--_z)) rotateY(0deg);
+        transform: translateZ(var(--_z)) rotateY(360deg);
     }
 
     to {
-        transform: translateZ(var(--_z)) rotateY(360deg);
+        transform: translateZ(var(--_z)) rotateY(0deg);
     }
 }
 
 @keyframes carousel-rotation-normal {
     from {
-        transform: rotateY(0deg);
+        transform: rotateY(360deg);
     }
 
     to {
-        transform: rotateY(360deg);
+        transform: rotateY(0deg);
     }
 }
 

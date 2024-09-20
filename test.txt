@@ -1,0 +1,1 @@
+echo "URL rewriting works!" | sudo tee /var/www/html/test.txt

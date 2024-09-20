@@ -5,6 +5,7 @@ import DataTable, { TableColumn } from "react-data-table-component";
 import Edit from "./Edit";
 import Notification from "./Notification";
 import CustomCursor from "../../components/CustomCursor";
+import { BASE_URL } from "../../utils/constant";
 import './admin.css'
 // const MyDataRow = {
 //   _id: string;
@@ -33,7 +34,7 @@ const Admin = () => {
     const [tokens, setTokens] = useState("");
     const [slugValues, setSlugValues] = useState([]);
     // const BASE_URL = process.env.REACT_APP_BASE_URL;
-    let BASE_URL = "https://webservice-xjm7.onrender.com"
+
 
     const handleDropDownChange = (event) => {
 
@@ -238,7 +239,7 @@ const Admin = () => {
 
     return (
         <div className="main-admin">
-            <CustomCursor/>
+            <CustomCursor />
             {message && <Notification message={message} setMessage={setMessage} />}
             {!tokens ? (
                 <div className="d-flex min-vh-100 flex-column justify-content-center px-4 py-5">
@@ -303,7 +304,7 @@ const Admin = () => {
                                     <button
                                         id="dropdownDefaultButtonadmin"
                                         onClick={toggleDropdown}
-                                        style={{backgroundColor:'#1f4cd5'}}
+                                        style={{ backgroundColor: '#1f4cd5' }}
                                         className="btn btn-primary text-white dropdown-toggle"
                                         type="button"
                                     >
@@ -429,28 +430,28 @@ export default Admin;
 
 const Modal = (loader) => {
     return (
-      <>
-        {loader && (
-          <div className="loader-fixed inset-0 z-50 d-flex align-items-center justify-content-center bg-dark bg-opacity-50">
-            <div className="bg-white loader-w-auto text-center p-4 rounded">
-              {loader && (
-                <button
-                  type="button"
-                  className="btn btn-primary position-relative d-flex align-items-center justify-content-center"
-                >
-                  <span>
-                    <div
-                      className="spinner-border spinner-border-sm"
-                      role="status"
-                    ></div>{" "}
-                    Processing...
-                  </span>
-                </button>
-              )}
-            </div>
-          </div>
-        )}
-      </>
+        <>
+            {loader && (
+                <div className="loader-fixed inset-0 z-50 d-flex align-items-center justify-content-center bg-dark bg-opacity-50">
+                    <div className="bg-white loader-w-auto text-center p-4 rounded">
+                        {loader && (
+                            <button
+                                type="button"
+                                className="btn btn-primary position-relative d-flex align-items-center justify-content-center"
+                            >
+                                <span>
+                                    <div
+                                        className="spinner-border spinner-border-sm"
+                                        role="status"
+                                    ></div>{" "}
+                                    Processing...
+                                </span>
+                            </button>
+                        )}
+                    </div>
+                </div>
+            )}
+        </>
     );
-  };
+};
 

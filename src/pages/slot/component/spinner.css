@@ -1,4 +1,4 @@
-.tickets-data h1 {
+/* .tickets-data h1 {
     position: absolute;
     bottom: 260px;
     left: 330px;
@@ -13,4 +13,312 @@
     margin-bottom: 1px;
     display: block;
 
+} */
+.slugCount {
+    position: absolute;
+    top: 263px;
+    left: 411px;
+    font-size: 12px;
+    color: red;
+}
+
+.token-credit-value {
+    position: absolute;
+    top: 353px;
+    z-index: 999;
+    margin-left: -71px;
+}
+
+.greenctx::before {
+    background-color: red !important;
+    animation: glowingRed 1.5s infinite !important;
+
+}
+
+@keyframes glowingRed {
+    0% {
+        box-shadow: 0 0 6px 3px rgba(255, 0, 0, 0.5);
+    }
+
+    50% {
+        background-color: rgb(223, 7, 7);
+        box-shadow: 0 0 7px 3px rgb(255, 0, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 6px 3px rgba(255, 0, 0, 0.5);
+    }
+}
+
+.box-1 .door {
+    margin-right: 0 !important;
+    margin-left: 16px !important;
+}
+
+.box-2 .door {
+    margin-left: 5px !important;
+}
+
+.box-3 {
+    margin-left: -35px !important;
+}
+
+.box-4 {
+    margin-left: -37px !important;
+}
+
+.box-5 {
+    margin-left: -37px !important;
+}
+
+.slot-machine-bg-mbl {
+    display: none;
+}
+
+.spinner-btn {
+    left: 600px !important;
+    top: -228px !important;
+}
+
+.buttons button#spinnerFree {
+    position: absolute;
+    left: 23px;
+    top: -228px;
+    background-color: transparent !important;
+    left: 315px;
+}
+
+.abs-giga {
+    position: absolute;
+    /* top: -50px; */
+    bottom: 160px;
+    left: 72px;
+}
+
+@media (max-width:1440px) {
+    .slot-machine-bg {
+        width: 906px;
+    }
+
+}
+
+@media (max-width:910px) {
+    .slot-machine-bg-mbl {
+        display: block;
+        width: 500px;
+    }
+
+    .slot-machine-bg {
+        display: none
+    }
+
+    .abs-giga {
+        position: static;
+
+    }
+
+    .door-w:nth-child(2), .door-w:nth-child(4),
+    .abs-giga,
+    .spinner-btn,
+    .buttons button#spinnerFree {
+        width: auto !important;
+    }
+
+    .slugCount {
+        position: absolute;
+        top: 150px;
+        left: 207px;
+        font-size: 12px;
+        color: red;
+    }
+
+    .doors,
+    .doors-outer,
+    .buttons button#spinnerFree,
+    .spinner-btn {
+        position: static !important;
+
+    }
+
+    .box-1 {
+        position: absolute !important;
+        z-index: -1;
+        top: 235px;
+        margin-left: 0;
+        left: 79px;
+    }
+
+    .box-2 {
+        position: absolute !important;
+        z-index: -1;
+        top: 307px;
+        margin-left: 0;
+        left: 298px;
+    }
+
+    .box-3 {
+        position: absolute !important;
+        z-index: -1;
+        top: 395px;
+        left: 132px;
+    }
+
+    .box-4 {
+        position: absolute !important;
+        z-index: -1;
+        top: 480px;
+        left: 341px;
+    }
+
+    .box-5 {
+        position: absolute;
+        z-index: -1;
+        top: 551px;
+        left: 133px;
+    }
+
+    .flex-sms {
+        flex-direction: column;
+    }
+}
+
+@media (max-width:500px) {
+    .slot-machine-bg-mbl {
+        display: block;
+        width: 420px;
+    }
+
+    .btn-double {
+        padding-block: 0 !important;
+        font-size: 0.9rem !important;
+    }
+
+    .token-credit-value {
+        position: absolute;
+        top: 301px;
+        z-index: 999;
+        margin-left: -51px;
+    }
+
+    .slugCount {
+        position: absolute;
+        top: 175px;
+        left: 171px;
+        font-size: 12px;
+        color: red;
+    }
+
+    .box-1 {
+        position: absolute !important;
+        z-index: -1;
+        top: 188px;
+        margin-left: 0;
+        left: 52px;
+    }
+
+    .box-2 {
+        position: absolute !important;
+        z-index: -1;
+        top: 257px;
+        margin-left: 0;
+        left: 245px;
+    }
+
+    .box-3 {
+        position: absolute !important;
+        z-index: -1;
+        top: 323px;
+        left: 105px;
+    }
+
+    .box-4 {
+        position: absolute !important;
+        z-index: -1;
+        top: 401px;
+        left: 287px;
+    }
+
+    .box-5 {
+        position: absolute;
+        z-index: -1;
+        top: 455px;
+        left: 106px;
+    }
+
+}
+
+@media (max-width:420px) {
+    .slot-machine-bg-mbl {
+        display: block;
+        width: 380px;
+    }
+
+    .door {
+        width: 100px;
+        height: 100px !important;
+    }
+
+    .box-1 {
+        position: absolute !important;
+
+        top: 172px;
+        margin-left: 0;
+        left: 51px;
+    }
+
+    .box-2 {
+        position: absolute !important;
+        z-index: -1;
+        top: 224px;
+        margin-left: 0;
+        left: 215px;
+    }
+
+    .box-3 {
+        position: absolute !important;
+        z-index: -1;
+        top: 294px;
+        left: 104px;
+    }
+
+    .box-4 {
+        position: absolute !important;
+        z-index: -1;
+        top: 358px;
+        left: 261px;
+    }
+
+    .box-5 {
+        position: absolute;
+        z-index: -1;
+        top: 413px;
+        left: 104px;
+    }
+
+    .token-credit-value {
+        position: absolute;
+        top: 290px;
+        z-index: 999;
+        margin-left: -51px;
+    }
+
+    .slugCount {
+        position: absolute;
+        top: 160px;
+        left: 157px;
+        font-size: 12px;
+        color: red;
+    }
+
+    .tickets-data {
+        position: absolute;
+        /* top: 0px; */
+        z-index: 999;
+        bottom: 373px;
+        left: 189px;
+    }
+
+    .tickets-data h1 {
+        font-size: 13px;
+    }
 }

@@ -4,7 +4,7 @@ let landing = require("../models/landing");
 const path = require('path');
 const singleUpload = require('../middlewares/multer.js');
 const { upload_file } = require("../utils/cloudinary.js");
-
+const cloudinary = require('cloudinary').v2;
 // Usedto handle error
 const { writeFile, unlink } = require("fs/promises");
 const errorHandler = require("../utils/errorHandler");
@@ -14,6 +14,7 @@ const bcrypt = require("bcryptjs");
 const catchAsyncErrors = require("../middlewares/catchAsyncErrors");
 const jwtToken = require("../utils/jwtToken");
 const jwt = require("jsonwebtoken");
+const Media = require("../models/media.js");
 
 
 const JWT_SECRET = process.env.JWT_SECRET || 'secretKey';
@@ -271,6 +272,66 @@ exports.updateSlot = catchAsyncErrors(async (req, res, next) => {
   console.log("done");
 
   return res.status(200).send({ message: "Image updated successfully" });
+
+})
+exports.uploadMedia = catchAsyncErrors(async (req, res, next) => {
+
+  const { _id } = req.body;
+
+  try {
+    const { originalname, mimetype, buffer } = req.file;
+    console.log('mimetype: ', mimetype);
+    // console.log('buffer: ', buffer);
+    console.log('originalname: ', originalname);
+
+    // Upload to Cloudinary
+    const uploadStream = cloudinary.uploader.upload_stream(
+      {
+        resource_type: mimetype.startsWith('video/') ? 'video' : 'image', // Determine resource type
+        public_id: originalname.split('.')[0], // Optional: specify a public ID
+      },
+      async (error, result) => {
+        if (error) {
+          console.error('Cloudinary upload error:', error); // Log the error
+          return res.status(500).json({ message: 'Cloudinary upload failed.', error });
+        }
+        console.log('result: ', result);
+
+        // Create media document
+        const media = new Media({
+          name: originalname,
+          url: result.secure_url, // Use the secure URL from Cloudinary
+          type: req.body.type,
+        });
+
+        await media.save();
+        // console.log('media: ', media);
+        res.status(201).json({ message: 'File uploaded successfully!', media });
+        return;
+      }
+    );
+    console.log(uploadStream);
+    // Stream the file buffer to Cloudinary
+    uploadStream.end(buffer); // End the stream with the buffer 
+  } catch (error) {
+    console.error('Error uploading media', error);
+    res.status(500).json({ message: 'Upload failed. Please try again.', error });
+  }
+
+
+})
+exports.getMedia = catchAsyncErrors(async (req, res, next) => {
+  try {
+    const media = await Media.find();
+    return res.status(200).send({ message: "Media Fetched", media });
+
+  }
+  // End the stream with the buffer
+  catch (error) {
+    console.error('Error fetching media', error);
+    res.status(500).json({ message: 'fetching failed. Please try again.', error });
+  }
+
 
 })
 

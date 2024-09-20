@@ -1,0 +1,135 @@
+import React, { useState, useEffect } from 'react';
+import Navbar from '../Dashboardd/Navbar.jsx';
+import Header2 from '../Dashboardd/header2.js';
+import CustomCursor from "../../components/CustomCursor";
+import video from '../../assets/images/dapp.mp4';
+import './media.css';
+import { BASE_URL } from '../../utils/constant.js';
+
+function Navboost() {
+    const [activeTab, setActiveTab] = useState('videos'); // Default tab is 'videos' 
+    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth <= 1440);
+    const [mediaFiles, setMediaFiles] = useState({
+        videos: [],
+        images: [],
+        pngImages: [],
+        alphaVideos: []
+    });
+
+    useEffect(() => {
+        // Fetch media data from API
+        const fetchMediaData = async () => {
+            try {
+                const response = await fetch(`${BASE_URL}/api/admin/getMedia`);
+                const data = await response.json();
+                console.log('Fetched media data:', data); // Log the data
+                setMediaFiles({
+                    videos: data.media.filter(file => file.type === 'videos'),
+                    images: data.media.filter(file => file.type === 'images'),
+                    pngImages: data.media.filter(file => file.type === 'image/png'),
+                    alphaVideos: data.media.filter(file => file.type === 'alphaVideos') // Adjust if necessary
+                });// Assuming the API returns the same structure
+            } catch (error) {
+                console.error('Error fetching media data:', error);
+            }
+        };
+
+        fetchMediaData();
+    }, []);
+
+    // Function to render media files based on the active tab
+    const renderMedia = (mediaList) => {
+        if (!Array.isArray(mediaList) || mediaList.length === 0) {
+            return <div>No media available</div>; // Handle empty state
+        }
+
+        return mediaList.map((media, index) => (
+
+            <div className="media-item" key={media._id}>
+                {media.type === 'images' || media.type === 'image/png' ? (
+                    <img src={media.url} alt={media.name} className="media-thumbnail" />
+                ) : media.type === 'videos' ? (
+                    <video className="media-thumbnail" controls>
+                        <source src={media.url} type="video/mp4" />
+                    </video>
+                ) : (
+                    <></>
+                )}
+                <div className="media-download">
+                    <a href={media.url} download={media.name}>
+                        Download {media.name}
+                        {
+                            console.log(media.type)
+                        }
+                    </a>
+                </div>
+            </div>
+        ));
+    };
+
+
+
+    useEffect(() => {
+        const handleResize = () => {
+            setIsSmallScreen(window.innerWidth <= 1440);
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+    }, []);
+
+    const navbarStyle = {
+        display: isSmallScreen ? 'none' : 'flex',
+        zIndex: 5,
+    };
+
+    const header2Style = {
+        display: isSmallScreen ? 'block' : 'none',
+    };
+
+    return (
+        <>
+            <CustomCursor />
+            <video className="dashboard-video" src={video} autoPlay muted loop></video>
+            <div className="dashboard-main-box">
+                <Navbar style={navbarStyle} />
+                <Header2 style={header2Style} />
+            </div>
+            <div className='sidebar-navbar-rest-area'>
+                <div className="media-page">
+                    <h1>Media Page</h1>
+
+                    {/* Tabs */}
+                    <div className="tabs">
+                        <button className={activeTab === 'videos' ? 'active' : ''} onClick={() => setActiveTab('videos')}>
+                            Videos
+                        </button>
+                        <button className={activeTab === 'images' ? 'active' : ''} onClick={() => setActiveTab('images')}>
+                            Images
+                        </button>
+                        <button className={activeTab === 'pngImages' ? 'active' : ''} onClick={() => setActiveTab('pngImages')}>
+                            Images (png)
+                        </button>
+                        <button className={activeTab === 'alphaVideos' ? 'active' : ''} onClick={() => setActiveTab('alphaVideos')}>
+                            Videos (Alpha)
+                        </button>
+                    </div>
+
+                    {/* Media Display */}
+                    <div className="media-gallery">
+                        {activeTab === 'videos' && renderMedia(mediaFiles.videos)}
+                        {activeTab === 'images' && renderMedia(mediaFiles.images)}
+                        {activeTab === 'pngImages' && renderMedia(mediaFiles.pngImages)}
+                        {activeTab === 'alphaVideos' && renderMedia(mediaFiles.alphaVideos)}
+                    </div>
+
+                </div>
+            </div>
+        </>
+    );
+}
+
+export default Navboost;

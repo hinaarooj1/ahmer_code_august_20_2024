@@ -375,53 +375,53 @@ function Landing() {
     };
   }, []);
 
-  useEffect(() => {
-    const faqElement = faqRef.current;
-    const videoElement = videoRef.current;
+  // useEffect(() => {
+  //   const faqElement = faqRef.current;
+  //   const videoElement = videoRef.current;
 
-    const intersectionObserver = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setInViewport(true);
-            videoElement.style.position = 'fixed';
-            videoElement.style.top = '0';
-            // videoElement.style.right = '0';
-            videoElement.style.width = '100%';
-            // videoElement.style.height = '100%';
-            // videoElement.style.objectFit = 'cover';
-            videoElement.style.zIndex = '-999999';
-            videoElement.style.overflow = 'hidden';
-          } else {
-            setInViewport(false);
-            videoElement.style.position = 'absolute';
-            videoElement.style.top = '0';
-            // videoElement.style.right = '0';
-            videoElement.style.width = '100%';
-            // videoElement.style.height = '100%';
-            // videoElement.style.objectFit = 'cover';
-            videoElement.style.zIndex = '-999999';
-            videoElement.style.overflow = 'hidden';
-          }
-        });
-      },
-      {
-        root: null, // Use the viewport as the root
-        rootMargin: '0px',
-        threshold: 0.1, // Trigger when 10% of the element is visible
-      }
-    );
+  //   const intersectionObserver = new IntersectionObserver(
+  //     (entries) => {
+  //       entries.forEach((entry) => {
+  //         if (entry.isIntersecting) {
+  //           setInViewport(true);
+  //           videoElement.style.position = 'fixed';
+  //           videoElement.style.top = '0';
+  //           // videoElement.style.right = '0';
+  //           videoElement.style.width = '100%';
+  //           // videoElement.style.height = '100%';
+  //           // videoElement.style.objectFit = 'cover';
+  //           videoElement.style.zIndex = '-999999';
+  //           videoElement.style.overflow = 'hidden';
+  //         } else {
+  //           setInViewport(false);
+  //           videoElement.style.position = 'absolute';
+  //           videoElement.style.top = '0';
+  //           // videoElement.style.right = '0';
+  //           videoElement.style.width = '100%';
+  //           // videoElement.style.height = '100%';
+  //           // videoElement.style.objectFit = 'cover';
+  //           videoElement.style.zIndex = '-999999';
+  //           videoElement.style.overflow = 'hidden';
+  //         }
+  //       });
+  //     },
+  //     {
+  //       root: null, // Use the viewport as the root
+  //       rootMargin: '0px',
+  //       threshold: 0.1, // Trigger when 10% of the element is visible
+  //     }
+  //   );
 
-    if (faqElement) {
-      intersectionObserver.observe(faqElement);
-    }
+  //   if (faqElement) {
+  //     intersectionObserver.observe(faqElement);
+  //   }
 
-    return () => {
-      if (faqElement) {
-        intersectionObserver.unobserve(faqElement);
-      }
-    };
-  }, []);
+  //   return () => {
+  //     if (faqElement) {
+  //       intersectionObserver.unobserve(faqElement);
+  //     }
+  //   };
+  // }, []);
 
   // 
   // function adjustHeight() {
@@ -1138,7 +1138,7 @@ function Landing() {
             <div className="background-fixed" ref={frequencyQuestionRef} >
               {/* <video src={faqVideo} autoPlay loop muted></video> */}
 
-              <video ref={videoRef} className="faqvideo" autoPlay loop muted>
+              <video className="faqvideo" autoPlay loop muted>
                 <source src={faqVideo} type="video/mp4" />
               </video>
               <div className="home-sec-6" id="faq">

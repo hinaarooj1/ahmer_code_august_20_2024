@@ -16,10 +16,12 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { Burning } from "./pages/Burning/Burning";
 import Navboost from "./pages/navboost/Navboost.jsx";
+import Media from "./pages/media/Media.jsx";
 import Terminal from "./pages/terminal/Terminal.jsx";
 import Admin from "./pages/admin/Admin.jsx";
 import './app.css'
 import { Staking } from "./pages/Staking/Staking";
+import UploadMedia from "./pages/admin/uploadMedia.jsx";
 
 
 const App = () => {
@@ -112,6 +114,7 @@ const App = () => {
           <Route path="/type" element={<Type />} />
           <Route path="/burning" element={<Burning />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/uploadMedia" element={<UploadMedia />} />
           <Route path="/r1000v1" element={<R1000VR text={text} />} />
           <Route path="/coming-soon" element={<Comingsoon text={text} />} />
           <Route path="/staking" element={<Staking text={text} />} />
@@ -122,6 +125,7 @@ const App = () => {
           <Route path="/fmooners" element={<Comingsoon text={text} />} />
           <Route path="/ntfs" element={<Comingsoon text={text} />} />
           <Route path="/charity" element={<Comingsoon text={text} />} />
+          <Route path="/media" element={<Media />} />
         </Routes>
       )}
       <ToastContainer />

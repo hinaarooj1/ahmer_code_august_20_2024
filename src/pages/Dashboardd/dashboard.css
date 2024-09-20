@@ -31,28 +31,37 @@
   overflow-y: scroll;
 }
 
-.abs-giga {
-  position: absolute;
-  /* top: -50px; */
-  bottom: 207px;
-  left: 72px;
+.spinner-btn, #spinnerFree, #spinner {
+  font-size: 13px !important;
 }
+
+.holo-btn-reb {
+  font-family: terminator !important;
+
+}
+
+
 
 .nav-hamburger {
   height: auto !important;
   width: 40px !important;
 }
 
-#spinnerFree {
+.tickets-data {
   position: absolute;
-  left: 23px;
-  top: -212px;
-  left: 287px;
+  /* top: 0px; */
+  z-index: 999;
+  bottom: 248px;
+  left: 443px;
+
 }
+
+
 
 .doors-outer {
   position: absolute;
-  top: 230px;
+  top: 307px;
+  left: 28px;
 }
 
 @media (max-width: 768px) {

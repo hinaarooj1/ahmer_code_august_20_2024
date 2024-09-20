@@ -5,9 +5,15 @@
 }
 
 @media (min-width:1460px) {
-    .staking-container {
+    /* .staking-container {
         max-width: 75%;
         margin-left: 20% !important;
+        margin-top: 157px;
+    } */
+
+    .staking-container {
+        max-width: 100%;
+        margin-left: 9% !important;
         margin-top: 157px;
     }
 }

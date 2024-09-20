@@ -2,10 +2,11 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import musicWav from "../../../assets/music/music.wav";
 import { useNavigate } from "react-router-dom";
+import SlotMobile from '../../../assets/new_image/Slot-machine-mobile-version.png'
 // import html2canvas from 'html2canvas';
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
-import slot_machine from '../../../assets/new_image/slot-machine.png';
-import axios from "axios"; 
+import slot_machine from '../../../assets/new_image/slot-machinel-1.png';
+import axios from "axios";
 // import Image from "next/image";
 import { clusterApiUrl } from "@solana/web3.js";
 import { WalletAdapterNetwork, WalletError } from "@solana/wallet-adapter-base";
@@ -14,7 +15,8 @@ import copy from 'copy-to-clipboard';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCopy } from '@fortawesome/free-solid-svg-icons';
 import Notification from "./Notification";
-let BASE_URL = 'http://localhost:4000';
+import './spinner.css'
+import { BASE_URL } from "../../../utils/constant";
 const Spinner = ({
   state,
   loadingFile,
@@ -436,7 +438,7 @@ const Spinner = ({
       }
 
       try {
-        if (address && (roll.roll )) {
+        if (address && (roll.roll)) {
 
           (async function () {
             const resp = await axios.post("/api/rollCount", form);
@@ -466,7 +468,7 @@ const Spinner = ({
       }
 
       try {
-        if (address && (roll.roll )) {
+        if (address && (roll.roll)) {
 
           (async function () {
             const resp = await axios.post("/api/rollCount", form);
@@ -710,14 +712,16 @@ const Spinner = ({
       navigate("/buy")
     }
   };
+
   return (
     <div className="main-slot">
-      <img src={slot_machine} alt="" />
+      <img className="slot-machine-bg" src={slot_machine} alt="" />
+      <img className="slot-machine-bg-mbl" src={SlotMobile} alt="" />
       {message && <Notification message={message} />}
-      {slugCount > 0 && <h4 className="slugCount">Slug View: {slugCount}</h4>}
+      {slugCount > 0 && <h4 className="slugCount">Views: {slugCount}</h4>}
       <div className="doors-outer">
         <div className="doors" id="mainDiv">
-          <div className="door-w">
+          <div className="door-w box-1">
             <div className="door">
               <div className="boxes">
                 <div className="box">
@@ -726,14 +730,14 @@ const Spinner = ({
               </div>
             </div>
           </div>
-          <div className="door-w">
+          <div className="door-w box-2">
             <div className="door">
               <div className="boxes">
                 <div className="box">word slot 1</div>
               </div>
             </div>
           </div>
-          <div className="door-w">
+          <div className="door-w box-3">
             <div className="door">
               <div className="boxes">
                 <div className="box">
@@ -742,7 +746,7 @@ const Spinner = ({
               </div>
             </div>
           </div>
-          <div className="door-w">
+          <div className="door-w box-4">
             <div className="door">
               <div className="boxes">
                 <div className="box">word slot 2</div>
@@ -750,7 +754,7 @@ const Spinner = ({
             </div>
           </div>
 
-          <div className="door-w">
+          <div className="door-w box-5">
             <div className="door">
               <div className="boxes">
                 <div className="box">
@@ -784,9 +788,9 @@ const Spinner = ({
         </div>
       </div> */}
       <div className="tickets-data">
-        <h1><span>Ticket</span>  12</h1>
+        <h1> 12</h1>
       </div>
-      <div className="buttons justify-content-center  relative">
+      <div className="buttons flex-sms justify-content-center  relative">
 
         <button
           id="spinnerFree"
@@ -798,15 +802,14 @@ const Spinner = ({
           </a>
           {/* <img src={'/img/free_spin.png'} width={141} height={36} alt="" className="img-fluid" /> */}
         </button>
-        <div className="text-center terminator">
-          Tickets
+        {/* <div className="text-center terminator">
+        
           <button className="wallet-button  d-flex" onClick={handleClick}>
             <h3>
               {rollValue} {roll && roll.freeSpin && <small>+{roll.freeSpin}</small>}
-            </h3>
-            {/* <span></span> */}
+            </h3> 
           </button>
-        </div>
+        </div> */}
 
 
         {/* <button onClick={() => router.push("/buy")}>
@@ -825,26 +828,53 @@ const Spinner = ({
         )}
 
 
+        {clicked
+          ?
+          <div className="w-auto  ">
+            <div>
+              <div >
+                <button
+                  onClick={toggleDiv} className="on-right spinner-btn" id="dropdownDefaultButton"
+                >
+                  <a class='holo-btn-reb' href='#'>
+                    <span class='cta-x'>Share</span>
+                    <span class='skew top'></span>
+                    <span class='skew bottom'></span>
+                  </a>
+                  {/* <img src={'/img/free_spin.png'} width={141} height={36} alt="" className="img-fluid" /> */}
+                </button>
+
+
+              </div>
+            </div>
+          </div>
+          :
+          <div className="w-auto  ">
+            <div>
+              <div >
+                <button
+                  disabled className="on-right spinner-btn" id="dropdownDefaultButton"
+                >
+                  <a class='holo-btn-reb' href='#'>
+                    <span class='cta-x greenctx'>Share</span>
+                    <span class='skew top'></span>
+                    <span class='skew bottom'></span>
+                  </a>
+                  {/* <img src={'/img/free_spin.png'} width={141} height={36} alt="" className="img-fluid" /> */}
+                </button>
+
+
+              </div>
+            </div>
+          </div>
+
+
+        }
         {clicked && (
           <>
             {loader && Modal(loader)}
 
 
-            <div className="w-auto  ">
-              <div>
-                <div >
-                  <button onClick={toggleDiv} className="on-right" id="dropdownDefaultButton">
-                    <a class='holo-btn-reb' href='#'>
-                      <span class='cta-x'>Share</span>
-                      <span class='skew top'></span>
-                      <span class='skew bottom'></span>
-                    </a>
-                    {/* <img src={'/img/share.png'} width={141} height={36} alt=""  className="img-fluid"/> */}
-                  </button>
-
-                </div>
-              </div>
-            </div>
 
             {showDiv && (
               <div
@@ -858,7 +888,7 @@ const Spinner = ({
                     <FontAwesomeIcon className="copyIcon" icon={faCopy} style={{ color: "#ec0909", cursor: "pointer" }} size="1x" onClick={copySlugUrl} />
                     <button style={{ fontFamily: 'minecraft' }}>
                       {/* <a href={`/share/${allSlug.slice(0)}`} target="_blank" > */}
-                      {`WWW://SLOTNEW...COM/../${allSlug.slice(0)}`}
+                      {`${allSlug.slice(0)}`}
                     </button>
                     {/* </a> */}
 
@@ -872,7 +902,7 @@ const Spinner = ({
                   {id && <li>
                     <FontAwesomeIcon className="copyIcon" icon={faCopy} style={{ color: "#ec0909", cursor: "pointer" }} size="1x" onClick={copyImageUrl} />
                     <button style={{ fontFamily: 'minecraft' }}>
-                      {`WWW://SLOTNEW...COM/.../${id.slice(-3)}.jpg`}
+                      {`${id.slice(-3)}.jpg`}
                     </button>
                   </li>}
 
@@ -890,7 +920,7 @@ const Spinner = ({
         <button id="spinner" disabled={!roll || roll && !roll?.roll || roll?.roll == 0 || disable}>
           {/* <img src={'/ticketspin.png'} width={141} height={36} alt="" /> */}
           <a class='holo-btn-reb' href='#'>
-            <span class='cta-x'>GIGABOOST</span>
+            <span class='cta-x'>GIGASPIN</span>
             <span class='skew top'></span>
             <span class='skew bottom'></span>
           </a>
@@ -899,71 +929,75 @@ const Spinner = ({
       <p className="info"></p>
 
 
-      {id && views && <>
+      {
+        id && views && <>
 
-        <h1 style={{ color: "white" }}>Total views:{views}</h1>
+          <h1 style={{ color: "white" }}>Total views:{views}</h1>
 
-        <div className="screen-shot">
-          <img src={url} className="" />
-        </div>
+          <div className="screen-shot">
+            <img src={url} className="" />
+          </div>
 
-      </>}
-      {output && temp && <>
-        <div id="app1">
-          <div className="doors-outer">
-            <div className="doors" id="mainDiv">
-              <div className="door-w">
-                <div className="door">
-                  <div className="boxes">
-                    <div className="box">
-                      {/**@ts-ignore */}
-                      <img src={output[0]?.file} />
+        </>
+      }
+      {
+        output && temp && <>
+          <div id="app1">
+            <div className="doors-outer">
+              <div className="doors" id="mainDiv">
+                <div className="door-w">
+                  <div className="door">
+                    <div className="boxes">
+                      <div className="box">
+                        {/**@ts-ignore */}
+                        <img src={output[0]?.file} />
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="door-w">
-                <div className="door">
-                  <div className="boxes">
-                    {/**@ts-ignore */}
-                    <div className="box">{temp[1]}</div>
-                  </div>
-                </div>
-              </div>
-              <div className="door-w">
-                <div className="door">
-                  <div className="boxes">
-                    <div className="box">
+                <div className="door-w">
+                  <div className="door">
+                    <div className="boxes">
                       {/**@ts-ignore */}
-                      <img src={output[1]?.file} />
+                      <div className="box">{temp[1]}</div>
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="door-w">
-                <div className="door">
-                  <div className="boxes">
-                    {/**@ts-ignore */}
-                    <div className="box">{temp[3]}</div>
+                <div className="door-w">
+                  <div className="door">
+                    <div className="boxes">
+                      <div className="box">
+                        {/**@ts-ignore */}
+                        <img src={output[1]?.file} />
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="door-w">
-                <div className="door">
-                  <div className="boxes">
-                    <div className="box">
+                <div className="door-w">
+                  <div className="door">
+                    <div className="boxes">
                       {/**@ts-ignore */}
-                      <img src={output[2]?.file} />
+                      <div className="box">{temp[3]}</div>
+                    </div>
+                  </div>
+                </div>
+                <div className="door-w">
+                  <div className="door">
+                    <div className="boxes">
+                      <div className="box">
+                        {/**@ts-ignore */}
+                        <img src={output[2]?.file} />
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-        </div>
-      </>}
-    </div>
+          </div>
+        </>
+      }
+    </div >
   );
 };
 

@@ -15,6 +15,11 @@ const cron = require("node-cron");
 let ALLOWED_ORIGINS = [
   "http://srv592701.hstgr.cloud",
   "http://www.srv592701.hstgr.cloud",
+  "http://srv592701.hstgr.cloud",
+  "https://31.220.109.138",
+  "https://31.220.109.138",
+  "https://memenator.com",
+  "https://www.memenator.com",
   "https://memenator-blochain-three.vercel.app",
   "https://www.memenator-blochain-three.vercel.app",
   "http://localhost:3000",

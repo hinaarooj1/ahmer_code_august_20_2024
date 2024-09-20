@@ -1,22 +1,21 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
 import Notification from "./Notification";
-
+import { BASE_URL } from "../../utils/constant";
 const Edit = ({ setIsModalOpen, editableData, setState }) => {
-  const [editedText, setEditedText] = useState(editableData.text1 || editableData.text2 || ""); 
-  const [selectedImage, setSelectedImage] = useState(editableData.file || null); 
+  const [editedText, setEditedText] = useState(editableData.text1 || editableData.text2 || "");
+  const [selectedImage, setSelectedImage] = useState(editableData.file || null);
   const [message, setMessage] = useState("");
   const [updatedFile, setUpdatedFile] = useState(null);
   const fileInputRef = useRef(null);
   const _id = editableData._id;
-  const BASE_URL = "https://webservice-xjm7.onrender.com";
 
   const closeModal = () => {
     setIsModalOpen();
   };
 
   const handleTextChange = (e) => {
-    setEditedText(e.target.value); 
+    setEditedText(e.target.value);
   };
 
   const handleImageChange = (e) => {
@@ -62,7 +61,7 @@ const Edit = ({ setIsModalOpen, editableData, setState }) => {
   const handleSubmit = async () => {
     if (updatedFile) {
       const form = new FormData();
-      form.append('upload', updatedFile); 
+      form.append('upload', updatedFile);
       form.append('_id', _id);
       try {
         const res = await axios.put(`${BASE_URL}/api/admin/updateFile`, form);
@@ -95,66 +94,66 @@ const Edit = ({ setIsModalOpen, editableData, setState }) => {
 
   return (
     <>
-    {message && <Notification message={message} />}
-    <div className="modal-backdrop d-flex justify-content-center align-items-center">
-      <div className="modal-content p-4 w-100 w-sm-50 text-center position-relative">
-        <span className="close-button" onClick={closeModal}>
-          &times;
-        </span>
-        <h2 className="modal-title text-start mb-3">Detail</h2>
-        <hr />
-        {selectedImage ? (
-          <div className="text-center edit-img-wrap mb-4">
-            <img
-              src={selectedImage}
-              alt="Image"
-              className="img-fluid mx-auto"
-            />
-          </div>
-        ) : (
-          <div className="form-group mb-4">
-            <input
-              type="text"
-              value={editedText}
-              onChange={handleTextChange}
-              className="form-control"
-            />
-          </div>
-        )}
-        {editableData.file && (
-          <button
-            onClick={handleClickImage}
-            className="btn btn-info text-white mb-2"
-          >
-            Select Image
-          </button>
-        )}
-        <input
-          ref={fileInputRef}
-          type="file"
-          accept="image/*"
-          onChange={handleImageChange}
-          style={{ display: "none" }}
-        />
-        <div>
+      {message && <Notification message={message} />}
+      <div className="modal-backdrop d-flex justify-content-center align-items-center">
+        <div className="modal-content p-4 w-100 w-sm-50 text-center position-relative">
+          <span className="close-button" onClick={closeModal}>
+            &times;
+          </span>
+          <h2 className="modal-title text-start mb-3">Detail</h2>
           <hr />
-          <button
-            onClick={closeModal}
-            className="btn btn-danger me-2 mb-2"
-          >
-            Cancel
-          </button>
-          <button
-            onClick={handleSubmit}
-            className="btn btn-dark me-2 mb-2"
-          >
-            Continue
-          </button>
+          {selectedImage ? (
+            <div className="text-center edit-img-wrap mb-4">
+              <img
+                src={selectedImage}
+                alt="Image"
+                className="img-fluid mx-auto"
+              />
+            </div>
+          ) : (
+            <div className="form-group mb-4">
+              <input
+                type="text"
+                value={editedText}
+                onChange={handleTextChange}
+                className="form-control"
+              />
+            </div>
+          )}
+          {editableData.file && (
+            <button
+              onClick={handleClickImage}
+              className="btn btn-info text-white mb-2"
+            >
+              Select Image
+            </button>
+          )}
+          <input
+            ref={fileInputRef}
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            style={{ display: "none" }}
+          />
+          <div>
+            <hr />
+            <button
+              onClick={closeModal}
+              className="btn btn-danger me-2 mb-2"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleSubmit}
+              className="btn btn-dark me-2 mb-2"
+            >
+              Continue
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  </>
-  
+    </>
+
   );
 };
 

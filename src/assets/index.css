@@ -18672,12 +18672,12 @@ button {
 
 .doors-outer {
   position: relative;
-  z-index: 3;
+  z-index: -1;
 }
 
 .doors-outer::after {
   content: "";
-  display: flex;
+  display: none;
   width: 140%;
   height: 100%;
   position: absolute;
@@ -18766,12 +18766,12 @@ button {
 .door-w {
   position: relative;
   padding: 20px 18px;
-  margin-left: -24px;
+  margin-left: -23px;
 }
 
 .door-w::after {
   content: "";
-  display: block;
+  display: none;
   width: 100%;
   height: 100%;
   position: absolute;
@@ -18784,7 +18784,7 @@ button {
 .door-w:nth-child(2),
 .door-w:nth-child(4) {
   position: relative;
-  padding: 20px 18px;
+  padding: 20px 5px;
   width: 100%;
   height: 80%;
 }
@@ -18832,12 +18832,20 @@ button {
   width: 100% !important;
 }
 
-#spinnerFree,
+.spinner-btn,
 #dropdownDefaultButton {
   background: none !important;
   background-size: 100%;
 }
 
+.slugCount {
+  position: absolute;
+  bottom: 0;
+}
+
+
+
+.spinner-btn,
 #spinnerFree {
   position: absolute;
   left: 0;
@@ -19331,6 +19339,7 @@ h6.wallet-button {
     font-size: 12px;
   }
 
+  .spinner-btn,
   #spinnerFree {
     width: 100px;
   }
@@ -20351,7 +20360,7 @@ new */
   span[class^="cta"] {
     width: 100%;
     display: block;
-    padding: 0 29px;
+    padding: 11px 29px;
     text-shadow: 0 0 30px #aaaaaa;
     /* Replace with actual gray color */
   }
@@ -20481,7 +20490,137 @@ new */
   span[class^="cta"] {
     width: 100%;
     display: block;
-    padding: 0 29px;
+    padding: 11px 29px;
+    text-shadow: 0 0 30px #aaaaaa;
+    /* Replace with actual gray color */
+  }
+
+  span[class^="cta"]:before {
+    text-transform: none;
+    font-family: fontastic1;
+    font-size: 1.4em;
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 22px;
+    padding-bottom: 4px;
+    transition: margin 500ms cubic-bezier(0.79, 0.01, 1, 0.21);
+  }
+
+  .holo-btn-reb span[class^="cta"] {
+    text-shadow: 0 0 30px #ff0900;
+  }
+
+  .cta-x:before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background-color: green;
+    border-radius: 50%;
+    margin-left: 8px;
+    animation: glowing 1.5s infinite;
+  }
+
+  .top {
+    margin-top: -60px;
+  }
+
+  .bottom {
+    margin-top: -42px;
+  }
+
+  .skew {
+    transform: skew(-45deg);
+    border: 1px solid transparent;
+    border-right-width: 2px;
+    border-image: linear-gradient(to right top, #aaaaaa, #555555) 1;
+    animation: holox-pen 5.4s ease 1s infinite;
+    padding: 24px;
+    display: block;
+    transition: all 330ms linear;
+    box-shadow: 0 0 13px rgba(102, 102, 102, 0.6) inset;
+  }
+
+  .holo-btn-reb .skew {
+    border-image: linear-gradient(to right top, #ff7570, #ff443d) 1;
+    animation-name: holox-reb;
+    box-shadow: 0 0 13px rgba(255, 9, 0, 0.6) inset;
+  }
+}
+
+.spinner-btn {
+  .da-red {
+    color: #ff443d;
+  }
+
+  .lighter-red {
+    color: #ff7570;
+  }
+
+  .text-shadow-red {
+    text-shadow: 0 0 30px #ff0900;
+  }
+
+  .text-hover-red {
+    color: #ffd8d6;
+  }
+
+  /* Common transition time */
+  .trans-time {
+    transition: all 330ms linear;
+  }
+
+  /* Keyframes */
+
+  /* Holo Button */
+  a[class^="holo-btn"] {
+    color: #aaaaaa;
+    /* Replace with actual gray color */
+    font: normal 1.1em/3.11em "Electrolize", "Cultive Mono", Tahoma, sans-serif;
+    text-decoration: none;
+    text-transform: uppercase;
+    display: block;
+    height: 60px;
+    transition: all 330ms linear;
+  }
+
+  a[class^="holo-btn"]:hover {
+    color: #ffffff;
+    /* Replace with actual hover gray color */
+    text-rendering: optimizeLegibility;
+  }
+
+  a[class^="holo-btn"]:hover .top {
+    margin-top: -55px;
+    animation: none;
+    box-shadow: none;
+  }
+
+  a[class^="holo-btn"]:hover .bottom {
+    margin-top: -47px;
+  }
+
+  a[class^="holo-btn"]:active .skew {
+    animation: none;
+    box-shadow: 0 0 22px rgba(102, 102, 102, 0.6) inset;
+  }
+
+  a.holo-btn-reb {
+    color: #ff443d;
+  }
+
+  a.holo-btn-reb:hover {
+    color: #ffd8d6;
+  }
+
+  a.holo-btn-reb:active .skew {
+    box-shadow: 0 0 22px rgba(255, 9, 0, 0.6) inset;
+  }
+
+  span[class^="cta"] {
+    width: 100%;
+    display: block;
+    padding: 11px 29px;
     text-shadow: 0 0 30px #aaaaaa;
     /* Replace with actual gray color */
   }
@@ -20973,6 +21112,30 @@ new */
 }
 
 @media (min-width:1980px) {
+
+  .home {
+    background-image: url(../assets/bg.webp);
+    background-repeat: repeat;
+  }
+
+  .fixed-header {
+
+    height: 0;
+    box-shadow: 5px 20px 20px 20px #000000;
+    /* 
+    */
+    background-color: black;
+  }
+
+  .home .home-wrap .home-sec-1 {
+    top: -10px !important;
+  }
+
+  .faq-scroll-soft,
+  .home .home-wrap .home-sec-1 {
+    background-color: black !important;
+  }
+
   .home .home-wrap .home-sec-1 {
     height: 1150px !important;
   }
