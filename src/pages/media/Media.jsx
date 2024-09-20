@@ -57,10 +57,7 @@ function Navboost() {
                 )}
                 <div className="media-download">
                     <a href={media.url} download={media.name}>
-                        Download {media.name}
-                        {
-                            console.log(media.type)
-                        }
+                        Download Icon
                     </a>
                 </div>
             </div>

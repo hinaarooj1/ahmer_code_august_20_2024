@@ -17,6 +17,7 @@ import './media.css'
 const UploadMedia = () => {
     const navigate = useNavigate();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isLoading, setisLoading] = useState(false);
     const [dropdownValue, setDropdownValue] = useState("");
     const [inputValue, setInputValue] = useState({ text: "", wordSlot: 1 });
     const [message, setMessage] = useState("");
@@ -257,6 +258,8 @@ const UploadMedia = () => {
         formData.append('type', mediaType); // Include media type in the request
 
         try {
+            setMessageMedia('');
+            setisLoading(true)
             await axios.post(`${BASE_URL}/api/admin/uploadMedia`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data',
@@ -265,9 +268,13 @@ const UploadMedia = () => {
             setMessageMedia('Upload successful!');
             setFile(null); // Reset file input
             setMediaType('videos'); // Reset media type
+            setisLoading(false)
+
         } catch (error) {
             console.error('Error uploading media', error);
             setMessageMedia('Upload failed. Please try again.');
+            setisLoading(false)
+
         }
     };
     return (
@@ -348,6 +355,7 @@ const UploadMedia = () => {
                         </div>
 
                         {messageMedia && <p className="upload-message">{messageMedia}</p>}
+                        {isLoading && <p className="uploading-message">Media is uploading</p>}
                     </div>
 
 

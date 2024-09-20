@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import DataTable, { TableColumn } from "react-data-table-component";
@@ -339,6 +339,12 @@ const Admin = () => {
                                 >
                                     Home
                                 </button>
+                                <Link to='/uploadMedia'
+                                    className="btn btn-warning"
+                                    style={{ padding: "0.5rem 1rem", borderRadius: "0.5rem", fontWeight: "500" }}
+                                >
+                                    Media Admin
+                                </Link>
                             </div>
 
                             {dropdownValue && (
