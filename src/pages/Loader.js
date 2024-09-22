@@ -1,62 +1,80 @@
-// src/components/Loader.js
-import React, { useEffect } from 'react';
-import './loader.css'; // Ensure to create this CSS file for styling
-import { Link } from 'react-router-dom';
+import React from 'react';
 
 const Loader = () => {
-    useEffect(() => {
-        let progress = 0;
-        const progressBar = document.querySelector('.progress');
-        const percentageText = document.querySelector('.percentage');
-
-        function updateProgress() {
-            if (progress < 100) {
-                progress += 1;
-                progressBar.style.width = progress + '%';
-                percentageText.textContent = progress + '%';
-                setTimeout(updateProgress, 50);
-            }
-        }
-
-        updateProgress();
-    }, []);
-
     return (
-        <>
-            <div className="loader-container">
-                <div className="loader">
-                    <div className="liquid"></div>
-                    <div className="liquid"></div>
-                    <div className="liquid"></div>
-                    <div className="liquid"></div>
-                    <div className="progress-bar">
-                        <div className="progress"></div>
-                        <div className="percentage">0%</div>
+        <div className="loading-container on">
+            <div className="screen">
+                <h3 className="title loader-title">CONNECTION ESTABLISHED</h3>
+                <div className="box--outer">
+                    <div className="box-loader">
+                        <div className="box--inner">
+                            <div className="content">
+                                <div className="holder">
+
+                                    <span className="inner-text-loader">
+                                        <b>R1000 Mainframe Activated</b> -- Scanning for Authorized Access <br /> Protocol Initiated
+                                    </span>
+                                    <br />
+                                    <br />
+                                    <div className="">
+                                        <div className="col col__left label">Login</div>
+                                        <div className="col col__center">
+                                            <input id="login" type="text" value={loginValue} maxLength={32} readOnly />
+                                        </div>
+                                    </div>
+                                    <form>
+                                        <div className="">
+                                            <div className="col col__left label">Password</div>
+                                            <div className="col col__center">
+                                                <input
+                                                    type="password"
+                                                    value={passwordValue}
+                                                    name="password"
+                                                    id="password"
+                                                    required
+                                                    maxLength={32}
+                                                    autoComplete="new-password"
+                                                    readOnly
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="">
+
+                                            <button onClick={handleEnter} disabled={!showSubmitButton} className={`${showSubmitButton ? "glowing-enter" : ""}`} type="button" id="submit" name="submit">
+                                                Enter
+                                            </button>
+                                        </div>
+                                        <div className="main-container">
+                                            <div id="main-loader">
+                                                <div id="heading" classname="flex-container">
+                                                    <p classname="loader-text">LOADING</p>
+                                                    <div classname="rotating-symbol">∴</div>
+
+                                                    <p className="percentage-value">%</p>
+                                                </div>
+                                                <div id="border-loading-bar">
+                                                    <div className="filled-bar" style={{ width: `${progressLoader}%` }} ></div>
+                                                </div>
+                                                <div id="alert-warning">
+                                                    <p>
+                                                    </p><div classname="alert-symbol">!</div>
+                                                    &nbsp; CAUTION, Do not turn off.
+                                                    <p>
+                                                    </p><div id="cascade-lines">
+                                                    </div>
+                                                </div>
+                                            </div></div>
+
+
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <svg>
-                    <filter id="gooey">
-                        <feGaussianBlur in="SourceGraphic" stdDeviation="10" />
-                        <feColorMatrix values="
-                        1 0 0 0 0
-                        0 1 0 0 0
-                        0 0 1 0 0
-                        0 0 0 20 -10
-                        " />
-                    </filter>
-                </svg>
-            </div >
-            <a className="connect-overlay-box lighta neon-glow" href="/lite">
-                <div className="bottom" bis_skin_checked={1}>
-                    <div className="btn-wrapper" bis_skin_checked={1} style={{ textAlign: 'center', display: 'flex', alignItems: 'center', height: '50px', width: '250px' }}>
-                        <button className="wallet-adapter-button wallet-adapter-button-trigger" tabIndex={0} type="button" style={{
-                            pointerEvents: 'auto', fontFamily: 'Minecraft',
-                            fontSize: '20px', justifyContent: 'center', width: '100%'
-                        }}>Switch to Light</button></div></div>
-                <div className="lava" bis_skin_checked={1} style={{ border: '5px white' }} /></a>
-
-        </>
+            </div>
+        </div>
     );
-};
+}
 
 export default Loader;

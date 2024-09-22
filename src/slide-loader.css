@@ -1,0 +1,210 @@
+@import url("https://fonts.googleapis.com/css2?family=Orbitron&display=swap");
+
+@property --num {
+  syntax: "<integer>";
+  initial-value: 0;
+  inherits: false;
+}
+
+@keyframes initText {
+  0% {
+    content: "Initializing system . . .";
+  }
+
+  17% {
+    content: "Initializing system . . . \aLoading core modules . . .";
+  }
+
+  27% {
+    content: "Initializing system . . . \aLoading core modules . . . \aVerifying user permissions . . .";
+  }
+
+  36% {
+    content: "Initializing system . . . \aLoading core modules . . . \aVerifying user permissions . . . \a Compiling source code . . .";
+  }
+
+  42% {
+    content: "Initializing system . . . \aLoading core modules . . . \aVerifying user permissions . . . \a Compiling source code . . . \aRunning diagnostics . . .";
+  }
+
+  49% {
+    content: "Loading core modules . . . \aVerifying user permissions . . . \a Compiling source code . . . \aRunning diagnostics . . . \a Establishing secure connection . . .";
+  }
+
+  60% {
+    content: "Verifying user permissions . . . \a Compiling source code . . . \aRunning diagnostics . . . \a Establishing secure connection . . . \aScanning for vulnerabilities . . .";
+  }
+
+  66% {
+    content: "Compiling source code . . . \aRunning diagnostics . . . \a Establishing secure connection . . . \aScanning for vulnerabilities . . . \aLoading user interface . . . \a";
+  }
+
+  78% {
+    content: "Running diagnostics . . . \a Establishing secure connection . . . \aScanning for vulnerabilities . . . \aLoading user interface . . . \a Executing startup procedures . . . \a";
+  }
+
+  100% {
+    content: "Establishing secure connection . . . \aScanning for vulnerabilities . . . \aLoading user interface . . . \a Executing startup procedures . . . \aInitializing database connections . . . \a";
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes countUp {
+  0% {
+    --num: 0;
+  }
+
+  60% {
+    --num: 66;
+  }
+
+  100% {
+    --num: 100;
+  }
+}
+
+@keyframes fillBar {
+  0% {
+    width: 0%;
+  }
+
+  60% {
+    width: 66%;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+@keyframes rotateSymbol {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#heading {
+  display: flex !important;
+}
+
+
+
+.main-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#main-loader {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  animation: fadeIn 1s ease-in-out;
+}
+
+#main-loader .loader-text {
+  font-family: "Orbitron";
+  letter-spacing: 0.3rem;
+}
+
+#main-loader .rotating-symbol {
+  font-size: 24px;
+  animation: rotateSymbol 1s linear infinite;
+  padding-top: 9.5px;
+  height: fit;
+}
+
+#main-loader .percentage-value {
+  counter-reset: num var(--num);
+  margin-left: auto;
+  transition: --num 5s;
+  animation: countUp 3s ease-in-out;
+  font-family: "Orbitron";
+  animation-fill-mode: forwards;
+}
+
+#main-loader .percentage-value:before {
+  font-family: "Orbitron";
+  content: counter(num);
+}
+
+#border-loading-bar {
+  display: flex;
+  align-items: center;
+  padding: 3px;
+  border-radius: 3px;
+  border-top: 1px solid rgba(255, 0, 0, 0.5);
+  /* Red */
+  border-bottom: 1px solid rgba(255, 0, 0, 0.5);
+  /* Red */
+  width: 100%;
+}
+
+#border-loading-bar .filled-bar {
+  height: 0.6rem;
+  margin: 1px 0;
+  background: red;
+  animation: fillBar 3s ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+#alert-warning {
+  margin-top: 0.5rem;
+  font-family: "Orbitron";
+  display: flex;
+  height: 1.2rem;
+}
+
+#alert-warning .alert-symbol {
+  width: 1rem;
+  display: flex;
+  justify-content: center;
+  background-color: red;
+  color: black;
+  border-radius: 3px;
+}
+
+#cascade-lines {
+  margin-left: auto;
+  display: flex;
+  align-items: flex-end;
+  margin-top: 5rem;
+}
+
+.flex-container {
+  display: flex;
+}
+
+#cascade-lines:after {
+  height: 5rem;
+  font-size: 7px;
+  white-space: pre;
+  text-align: end;
+  color: #b5b5b5;
+  content: "";
+  animation: initText 3s ease forwards, flashingText 1.5s infinite;
+  animation-fill-mode: forwards;
+}
+
+@keyframes flashingText {
+  0%, 100% {
+    color: red;
+  }
+
+  50% {
+    color: transparent;
+  }
+}

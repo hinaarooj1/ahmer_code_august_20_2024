@@ -193,7 +193,7 @@ export default function Home() {
                 <div className="giga-logo text-center">
                     {/* <h1> 
                         GIGAPOT</h1> */}
-                    <button className="token-credit-value btn-double Terminator">100<span></span></button>
+                    <button className="token-credit-value sol-amount-wallet input-neon Terminator">100<span></span></button>
                 </div>
                 <br />
                 {/* {address ? (

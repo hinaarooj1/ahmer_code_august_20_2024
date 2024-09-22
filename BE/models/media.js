@@ -14,6 +14,10 @@ const MediaSchema = new mongoose.Schema(
             type: String,
             required: true, // Store the category
         },
+        thumbnailUrl: {
+            type: String,
+            required: true, // Store the category
+        },
         createdAt: {
             type: Date,
             default: Date.now,

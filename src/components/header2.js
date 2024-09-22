@@ -24,11 +24,13 @@ import { useEffect } from "react";
 import "../assets/index.css";
 import { styled, css } from 'styled-components';
 import whitePaperPDF from "../assets/whitepaper-unfinished.pdf";
+import { useMusic } from "../utils/MusicContext.js";
 
 
 function Header2({ handleScrollToFrequencyQuestion, handleScrollToPresale, handleScrollToTokenomics, handleScrollToDapp, handleScrollToRoadmap }) {
   const navigate = useNavigate();
-  const audioRef = useRef(null);
+  const audioRef = useMusic();
+  ;
   const [musicStatus, setMusicStatus] = useState(true);
   const [musicOverlay, setmusicOverlay] = useState(true);
   const divRef = useRef(null);
@@ -54,7 +56,7 @@ function Header2({ handleScrollToFrequencyQuestion, handleScrollToPresale, handl
     };
   }, []);
   const handleMusicButton = () => {
-    if (musicStatus) {
+    if (!musicStatus) {
 
       audioRef.current.play();
       console.log("Audio is playing");
@@ -67,7 +69,11 @@ function Header2({ handleScrollToFrequencyQuestion, handleScrollToPresale, handl
   }
 
 
+  useEffect(() => {
 
+    console.log('syat', musicStatus);
+    console.log('syat', audioRef);
+  }, []);
   const start = () => {
     let audio = new Audio("/futuristic.mp3");
 
@@ -112,12 +118,12 @@ function Header2({ handleScrollToFrequencyQuestion, handleScrollToPresale, handl
       <Header className="fixed-header" >
         <div className="liquid"></div>
         <div className="header-wrap" style={{ backgroundColor: 'transparent' }}>
-          <audio ref={audioRef} src={music} />
+          {/* <audio ref={audioRef} src={music} /> */}
           <div className="left">
             <div
               previewlistener="true"
               onClick={() => {
-                navigate("/");
+
               }}
             >
               <img
@@ -130,27 +136,27 @@ function Header2({ handleScrollToFrequencyQuestion, handleScrollToPresale, handl
           <div className="center" style={{ marginTop: "-3px" }}>
             <ul style={{ dispaly: 'flex', gap: '50px' }}>
               <li>
-                <a className="red-glow" href="#presale" onClick={() => { navigate("/"); handleScrollToPresale(); }}>
+                <a className="red-glow" href="#presale" onClick={() => { handleScrollToPresale(); }}>
                   Presale
                 </a>
               </li>
               <li>
-                <a className="red-glow" href="#dashboard" onClick={() => { navigate("/"); handleScrollToDapp(); }}>
+                <a className="red-glow" href="#dashboard" onClick={() => { handleScrollToDapp(); }}>
                   R1000 DApp
                 </a>
               </li>
               <li>
-                <a className="red-glow" href="#tokenomics" onClick={() => { navigate("/"); handleScrollToTokenomics(); }}>
+                <a className="red-glow" href="#tokenomics" onClick={() => { handleScrollToTokenomics(); }}>
                   Tokenomics
                 </a>
               </li>
               <li>
-                <a className="red-glow" href="#roadmap" onClick={() => { navigate("/"); handleScrollToRoadmap(); }}>
+                <a className="red-glow" href="#roadmap" onClick={() => { handleScrollToRoadmap(); }}>
                   Roadmap
                 </a>
               </li>
               <li>
-                <a className="red-glow" href="#faq" onClick={() => { navigate("/"); handleScrollToFrequencyQuestion(); }}>
+                <a className="red-glow" href="#faq" onClick={() => { handleScrollToFrequencyQuestion(); }}>
                   FAQ
                 </a>
               </li>
@@ -295,7 +301,7 @@ function Header2({ handleScrollToFrequencyQuestion, handleScrollToPresale, handl
                 setIsMobileMenuOpen(false);
               }}
             >
-              <a style={{ fontFamily: 'Termin-font', fontSize: '15px' }} href="#presale" onClick={() => { navigate("/"); handleScrollToPresale(); }}>
+              <a style={{ fontFamily: 'Termin-font', fontSize: '15px' }} href="#presale" onClick={() => { handleScrollToPresale(); }}>
                 Presale
               </a>
             </li>
@@ -328,7 +334,7 @@ function Header2({ handleScrollToFrequencyQuestion, handleScrollToPresale, handl
                 setIsMobileMenuOpen(false);
               }}
             >
-              <a style={{ fontFamily: 'Termin-font', fontSize: '15px' }} href="#dashboard" onClick={() => { navigate("/"); handleScrollToPresale(); }}>
+              <a style={{ fontFamily: 'Termin-font', fontSize: '15px' }} href="#dashboard" onClick={() => { handleScrollToPresale(); }}>
                 R1000 DAPP
               </a>
             </li>
@@ -355,7 +361,7 @@ function Header2({ handleScrollToFrequencyQuestion, handleScrollToPresale, handl
                 transition: 'all 300ms ease-in-out',
                 borderBottom: 'none'
               }} onClick={() => { navigate("/memenator"); setIsMobileMenuOpen(false); }} >
-              <a style={{ fontFamily: 'Termin-font', fontSize: '15px' }} href="#tokenomics" onClick={() => { navigate("/"); handleScrollToTokenomics(); }}>
+              <a style={{ fontFamily: 'Termin-font', fontSize: '15px' }} href="#tokenomics" onClick={() => { handleScrollToTokenomics(); }}>
                 Tokenomics
               </a>
             </li>
@@ -381,7 +387,7 @@ function Header2({ handleScrollToFrequencyQuestion, handleScrollToPresale, handl
               transition: 'all 300ms ease-in-out',
               borderBottom: 'none'
             }} onClick={() => { handleScrollToFrequencyQuestion(); setIsMobileMenuOpen(false); }}>
-              <a style={{ fontFamily: 'Termin-font', fontSize: '15px' }} href="#roadmap" onClick={() => { navigate("/"); handleScrollToRoadmap(); }}>
+              <a style={{ fontFamily: 'Termin-font', fontSize: '15px' }} href="#roadmap" onClick={() => { handleScrollToRoadmap(); }}>
                 Roadmap
               </a>
             </li>
@@ -406,8 +412,8 @@ function Header2({ handleScrollToFrequencyQuestion, handleScrollToPresale, handl
               cursor: 'pointer',
               transition: 'all 300ms ease-in-out',
               borderBottom: 'none'
-            }} onClick={() => { navigate("/"); setIsMobileMenuOpen(false); }}>
-              <a style={{ fontFamily: 'Termin-font', fontSize: '15px' }} href="#faq" onClick={() => { navigate("/"); handleScrollToFrequencyQuestion(); }}>
+            }} onClick={() => { setIsMobileMenuOpen(false); }}>
+              <a style={{ fontFamily: 'Termin-font', fontSize: '15px' }} href="#faq" onClick={() => { handleScrollToFrequencyQuestion(); }}>
                 FAQ
               </a>
             </li>
@@ -432,7 +438,7 @@ function Header2({ handleScrollToFrequencyQuestion, handleScrollToPresale, handl
               fontSize: '1.6em',
               cursor: 'pointer',
               transition: 'all 300ms ease-in-out',
-            }} onClick={() => { navigate("/"); setIsMobileMenuOpen(false); }}>
+            }} onClick={() => { setIsMobileMenuOpen(false); }}>
               <a style={{ fontFamily: 'Termin-font', fontSize: '15px' }} href={whitePaperPDF} target="_blank" rel="noopener noreferrer">Whitepaper</a>
             </li>
             <li style={{

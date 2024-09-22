@@ -52,3 +52,70 @@ h1 {
     font-size: 18px;
     color: #333;
 }
+
+.upload-media-container {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.upload-section {
+    margin-bottom: 20px;
+}
+
+.label-text {
+    color: #fff;
+}
+
+.select-input {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    margin-left: 10px;
+}
+
+.file-input {
+    background-color: #333;
+    color: #fff;
+    padding: 8px;
+    margin-left: 10px;
+}
+
+.btn-upload {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.btn-upload:hover {
+    background-color: #555;
+}
+
+.preview-admin {
+
+    width: 150px;
+    height: 150px;
+}
+
+.upload-message {
+    color: #00ff00;
+    margin-top: 10px;
+}
+
+.media-table {
+    margin-top: 20px;
+    background-color: #1a1a1a;
+}
+
+.media-link {
+    color: #00ff00;
+}
+
+.media-link:hover {
+    text-decoration: underline;
+}

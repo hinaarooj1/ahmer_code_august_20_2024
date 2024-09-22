@@ -33,11 +33,13 @@ import { useEffect } from "react";
 import "./index.css";
 import { styled } from 'styled-components';
 import whitePaperPDF from "../../assets/whitepaper-unfinished.pdf";
+import { useMusic } from "../../utils/MusicContext.js";
 
 function Header2({ handleScrollToFrequencyQuestion, handleScrollToPresale }) {
   const navigate = useNavigate();
-  const audioRef = useRef(null);
-  const [musicStatus, setMusicStatus] = useState(false);
+  const audioRef = useMusic();
+
+  const [musicStatus, setMusicStatus] = useState(true);
   const divRef = useRef(null);
   const divRef1 = useRef(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -60,7 +62,7 @@ function Header2({ handleScrollToFrequencyQuestion, handleScrollToPresale }) {
     };
   }, []);
   const handleMusicButton = () => {
-    if (musicStatus) {
+    if (!musicStatus) {
       audioRef.current.pause();
     } else {
       audioRef.current.play();
@@ -91,7 +93,7 @@ function Header2({ handleScrollToFrequencyQuestion, handleScrollToPresale }) {
       <Header className="fixed-header" >
         <div className="liquid max-liquid"  ></div>
         <div className="d-flex header-wrap">
-          <audio ref={audioRef} src={music} />
+          {/* <audio ref={audioRef} src={music} /> */}
           <div className="left">
             <div
               previewlistener="true"

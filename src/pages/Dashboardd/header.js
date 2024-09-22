@@ -30,11 +30,13 @@ import { useRef, useState } from "react";
 import { useEffect } from "react";
 import "../../assets/index.css";
 import { styled } from 'styled-components';
+import { useMusic } from "../utils/MusicContext.js";
 
 function Header({ handleScrollToFrequencyQuestion, handleScrollToPresale }) {
   const navigate = useNavigate();
-  const audioRef = useRef(null);
-  const [musicStatus, setMusicStatus] = useState(false);
+  const audioRef = useMusic();
+
+  const [musicStatus, setMusicStatus] = useState(true);
   const divRef = useRef(null);
   const divRef1 = useRef(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -57,7 +59,7 @@ function Header({ handleScrollToFrequencyQuestion, handleScrollToPresale }) {
     };
   }, []);
   const handleMusicButton = () => {
-    if (musicStatus) {
+    if (!musicStatus) {
       audioRef.current.pause();
     } else {
       audioRef.current.play();
@@ -125,7 +127,7 @@ function Header({ handleScrollToFrequencyQuestion, handleScrollToPresale }) {
 
       <Header className="d-sm-none d-block  fixed-header" >
         <div className="header-wrap">
-          <audio ref={audioRef} src={music} />
+          {/* <audio ref={audioRef} src={music} /> */}
           <div className="left">
             <div
               previewlistener="true"

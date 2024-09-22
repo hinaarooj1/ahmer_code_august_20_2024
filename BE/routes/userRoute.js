@@ -5,7 +5,7 @@ const {
   newText,
   mainAdmin,
   getImage, updateText, uploadMedia,
-  getMedia
+  getMedia, deleteMedia
 } = require("../controllers/userController");
 const { authorizedRoles } = require("../middlewares/auth");
 
@@ -29,6 +29,7 @@ router.route("/getdata/image").post(getImage);
 router.route("/admin/updateText").put(updateText);
 router.route("/admin/uploadMedia").post(multiUpload, uploadMedia);
 router.route("/admin/getMedia").get(getMedia);
+router.route("/admin/deleteMedia/:id").delete(deleteMedia);
 
 
 module.exports = router;

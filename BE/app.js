@@ -13,9 +13,9 @@ app.use(cookieParser());
 
 const cron = require("node-cron");
 let ALLOWED_ORIGINS = [
-  "http://srv592701.hstgr.cloud",
-  "http://www.srv592701.hstgr.cloud",
-  "http://srv592701.hstgr.cloud",
+  "https://srv592701.hstgr.cloud",
+  "https://www.srv592701.hstgr.cloud",
+  "https://srv592701.hstgr.cloud",
   "https://31.220.109.138",
   "https://31.220.109.138",
   "https://memenator.com",

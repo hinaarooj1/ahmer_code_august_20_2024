@@ -1,12 +1,13 @@
 "use client";
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import musicWav from "../../../assets/music/music.wav";
+import musicWav from "../../../assets/music/slotmachinesound.mp3";
 import { useNavigate } from "react-router-dom";
 import SlotMobile from '../../../assets/new_image/Slot-machine-mobile-version.png'
 // import html2canvas from 'html2canvas';
 import { toPng, toJpeg, toBlob, toPixelData, toSvg } from "html-to-image";
 import slot_machine from '../../../assets/new_image/slot-machinel-1.png';
 import axios from "axios";
+import Logo from '../../../assets/logo/r1000logo.png'
 // import Image from "next/image";
 import { clusterApiUrl } from "@solana/web3.js";
 import { WalletAdapterNetwork, WalletError } from "@solana/wallet-adapter-base";
@@ -725,7 +726,7 @@ const Spinner = ({
             <div className="door">
               <div className="boxes">
                 <div className="box">
-                  <img src={loadingFile[0]?.file1} />
+                  <img src={Logo} />
                 </div>
               </div>
             </div>
@@ -733,7 +734,7 @@ const Spinner = ({
           <div className="door-w box-2">
             <div className="door">
               <div className="boxes">
-                <div className="box">word slot 1</div>
+                <div className="box"></div>
               </div>
             </div>
           </div>
@@ -741,7 +742,7 @@ const Spinner = ({
             <div className="door">
               <div className="boxes">
                 <div className="box">
-                  <img src={loadingFile[0]?.file1} />
+                  <img src={Logo} />
                 </div>
               </div>
             </div>
@@ -749,7 +750,7 @@ const Spinner = ({
           <div className="door-w box-4">
             <div className="door">
               <div className="boxes">
-                <div className="box">word slot 2</div>
+                <div className="box"></div>
               </div>
             </div>
           </div>
@@ -758,7 +759,7 @@ const Spinner = ({
             <div className="door">
               <div className="boxes">
                 <div className="box">
-                  <img src={loadingFile[0]?.file1} />
+                  <img src={Logo} />
                 </div>
               </div>
             </div>
@@ -788,14 +789,14 @@ const Spinner = ({
         </div>
       </div> */}
       <div className="tickets-data">
-        <h1> 12</h1>
+        <h1> 00</h1>
       </div>
       <div className="buttons flex-sms justify-content-center  relative">
 
         <button
           id="spinnerFree"
         >
-          <a class='holo-btn-reb' href='#'>
+          <a class='holo-btn-reb' href='javascript:void(0)'>
             <span class='cta-x'>Free Spin</span>
             <span class='skew top'></span>
             <span class='skew bottom'></span>
@@ -950,7 +951,7 @@ const Spinner = ({
                     <div className="boxes">
                       <div className="box">
                         {/**@ts-ignore */}
-                        <img src={output[0]?.file} />
+                        <img src={Logo} />
                       </div>
                     </div>
                   </div>
@@ -968,7 +969,7 @@ const Spinner = ({
                     <div className="boxes">
                       <div className="box">
                         {/**@ts-ignore */}
-                        <img src={output[1]?.file} />
+                        <img src={Logo} />
                       </div>
                     </div>
                   </div>
@@ -986,7 +987,7 @@ const Spinner = ({
                     <div className="boxes">
                       <div className="box">
                         {/**@ts-ignore */}
-                        <img src={output[2]?.file} />
+                        <img src={Logo} />
                       </div>
                     </div>
                   </div>

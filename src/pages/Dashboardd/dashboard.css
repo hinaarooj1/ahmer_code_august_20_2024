@@ -14,6 +14,8 @@
 
 /* Dashboard.css */
 .dashboard.main-b {
+  position: relative !important;
+  min-width: 800px !important;
   /* position: fixed !important; */
   /* height: 100% !important;
   z-index: 99;
@@ -25,10 +27,10 @@
   position: fixed;
   top: 0;
   left: 0;
-  padding-block: 100px;
+  padding-block: 0px;
   /* width: 100vw;
   height: 100vh; */
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 
 .spinner-btn, #spinnerFree, #spinner {
@@ -51,7 +53,7 @@
   position: absolute;
   /* top: 0px; */
   z-index: 999;
-  bottom: 248px;
+  bottom: 226px;
   left: 443px;
 
 }
@@ -1318,5 +1320,15 @@ p {
 @media (max-width:1380px) {
   .dashboard-wrapper {
     max-width: 900px;
+  }
+}
+
+@media (max-width:900px) {
+
+  .dashboard.main-b {
+    position: relative !important;
+    min-width: 100% !important;
+
+
   }
 }

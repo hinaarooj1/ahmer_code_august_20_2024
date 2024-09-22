@@ -27,7 +27,7 @@ import whitePaperPDF from "../assets/whitepaper-unfinished.pdf";
 function Header2({ handleScrollToFrequencyQuestion, handleScrollToPresale, handleScrollToTokenomics, handleScrollToDapp, handleScrollToRoadmap }) {
   const navigate = useNavigate();
   const audioRef = useRef(null);
-  const [musicStatus, setMusicStatus] = useState(false);
+  const [musicStatus, setMusicStatus] = useState(true);
   const divRef = useRef(null);
   const divRef1 = useRef(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -50,7 +50,7 @@ function Header2({ handleScrollToFrequencyQuestion, handleScrollToPresale, handl
     };
   }, []);
   const handleMusicButton = () => {
-    if (musicStatus) {
+    if (!musicStatus) {
       audioRef.current.play();
       console.log("Audio is playing");
     } else {
@@ -85,7 +85,7 @@ function Header2({ handleScrollToFrequencyQuestion, handleScrollToPresale, handl
       <Header className="fixed-header" >
         <div className="liquid"></div>
         <div className="header-wrap">
-          <audio ref={audioRef} src={music} />
+          {/* <audio ref={audioRef} src={music} /> */}
           <div className="left">
             <div
               previewlistener="true"

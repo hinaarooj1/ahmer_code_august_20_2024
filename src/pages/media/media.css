@@ -9,6 +9,17 @@ h1 {
     margin-bottom: 20px;
 }
 
+.media-main {
+    /* margin-left: 22% !important; */
+    margin-top: 157px;
+    margin-left: 250px;
+
+    max-width: -webkit-fill-available;
+    /* margin-right: 4%; */
+
+}
+
+
 /* Tabs Section */
 .tabs {
     display: flex;
@@ -52,11 +63,17 @@ h1 {
     width: 150px;
 }
 
+.media-bx {
+    width: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 150px;
+}
+
 .media-thumbnail {
     width: 150px;
-    height: 150px;
     object-fit: cover;
-    border: 1px solid #ccc;
 }
 
 .media-download {
@@ -70,4 +87,17 @@ h1 {
 
 .media-download a:hover {
     text-decoration: underline;
+}
+
+@media (max-width:1440px) {
+    .media-main {
+        /* margin-left: 22% !important; */
+        margin-top: 157px;
+        margin-left: 0;
+
+        max-width: -webkit-fill-available;
+        /* margin-right: 4%; */
+
+    }
+
 }

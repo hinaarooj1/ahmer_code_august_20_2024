@@ -275,51 +275,83 @@ exports.updateSlot = catchAsyncErrors(async (req, res, next) => {
 
 })
 exports.uploadMedia = catchAsyncErrors(async (req, res, next) => {
-
   const { _id } = req.body;
 
   try {
     const { originalname, mimetype, buffer } = req.file;
     console.log('mimetype: ', mimetype);
-    // console.log('buffer: ', buffer);
     console.log('originalname: ', originalname);
 
-    // Upload to Cloudinary
-    const uploadStream = cloudinary.uploader.upload_stream(
-      {
-        resource_type: mimetype.startsWith('video/') ? 'video' : 'image', // Determine resource type
-        public_id: originalname.split('.')[0], // Optional: specify a public ID
-      },
-      async (error, result) => {
-        if (error) {
-          console.error('Cloudinary upload error:', error); // Log the error
-          return res.status(500).json({ message: 'Cloudinary upload failed.', error });
-        }
-        console.log('result: ', result);
+    // Helper function to upload files to Cloudinary
+    const uploadToCloudinary = (fileBuffer, fileName, resourceType) => {
+      return new Promise((resolve, reject) => {
+        const uploadStream = cloudinary.uploader.upload_stream(
+          {
+            resource_type: resourceType, // 'video' or 'image'
+            public_id: fileName.split('.')[0], // Optional: specify a public ID
+          },
+          (error, result) => {
+            if (error) {
+              console.error('Cloudinary upload error:', error);
+              reject(error);
+            } else {
+              resolve(result);
+            }
+          }
+        );
+        uploadStream.end(fileBuffer); // End the stream with the file buffer
+      });
+    };
 
-        // Create media document
-        const media = new Media({
-          name: originalname,
-          url: result.secure_url, // Use the secure URL from Cloudinary
-          type: req.body.type,
-        });
-
-        await media.save();
-        // console.log('media: ', media);
-        res.status(201).json({ message: 'File uploaded successfully!', media });
-        return;
-      }
+    // Upload the main media file
+    const uploadResult = await uploadToCloudinary(
+      buffer,
+      originalname,
+      mimetype.startsWith('video/') ? 'video' : 'image'
     );
-    console.log(uploadStream);
-    // Stream the file buffer to Cloudinary
-    uploadStream.end(buffer); // End the stream with the buffer 
+    console.log('Upload result: ', uploadResult);
+
+    const mediaUrl = uploadResult.secure_url;
+
+    // Generate a thumbnail automatically without cropping
+    let thumbnailUrl = '';
+    if (mimetype.startsWith('image/')) {
+      // For images: Scale down without cropping, maintaining aspect ratio
+      thumbnailUrl = cloudinary.url(uploadResult.public_id, {
+        resource_type: 'image',
+        transformation: [
+          { width: 200, quality: 'auto:low', crop: 'scale' }, // Scale down while preserving aspect ratio
+        ],
+      });
+    } else if (mimetype.startsWith('video/')) {
+      // For videos: Generate a thumbnail from the first frame
+      thumbnailUrl = cloudinary.url(uploadResult.public_id, {
+        resource_type: 'video',
+        transformation: [
+          { width: 200, quality: 'auto:low', crop: 'scale', start_offset: '0' }, // Scale down video thumbnail
+        ],
+      });
+    }
+
+    console.log('Thumbnail URL: ', thumbnailUrl);
+
+    // Create media document with media URL and thumbnail URL
+    const media = new Media({
+      name: originalname,
+      url: mediaUrl, // Main media file URL
+      thumbnailUrl: thumbnailUrl, // Generated thumbnail URL
+      type: req.body.type,
+    });
+
+    await media.save();
+    res.status(201).json({ message: 'File uploaded successfully with thumbnail!', media });
   } catch (error) {
     console.error('Error uploading media', error);
     res.status(500).json({ message: 'Upload failed. Please try again.', error });
   }
+});
 
 
-})
 exports.getMedia = catchAsyncErrors(async (req, res, next) => {
   try {
     const media = await Media.find();
@@ -352,6 +384,29 @@ exports.updateText = catchAsyncErrors(async (req, res, next) => {
   }
 
   return res.status(200).send({ message: "Text updated successfully" });
+
+})
+exports.deleteMedia = catchAsyncErrors(async (req, res, next) => {
+
+  const { id } = req.params;
+  console.log('id: ', id);
+  let deleteMediaFile = await Media.findByIdAndDelete({ _id: id })
+  return res.status(200).send({ message: "Media deleted successfully" });
+
+
+  // const getText = await Slot.findById(_id);
+
+  // if (getText.text1) {
+  //   await Slot.findByIdAndUpdate(_id, {
+  //     text1: editedText,
+  //   });
+  // } else {
+  //   await Slot.findByIdAndUpdate(_id, {
+  //     text2: editedText,
+  //   });
+  // }
+
+  // return res.status(200).send({ message: "Text updated successfully" });
 
 })
 

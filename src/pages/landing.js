@@ -58,6 +58,7 @@ import TypewriterEffect from "../components/TypewriterEffect";
 import Dapptypingeffect from "../components/dapptypingeffect";
 import Footer from '../components/footer';
 import ReactPlayer from "react-player";
+import { Link } from "react-router-dom";
 
 
 
@@ -434,23 +435,37 @@ function Landing() {
 
   // window.addEventListener('resize', adjustHeight);
   // window.addEventListener('load', adjustHeight);
-  function adjustHeight() {
-    const navBarHeight = document.querySelector('.liquid').offsetHeight;
+  async function adjustHeight() {
+    // Helper function to wait for an element to be available
+    const waitForElement = (selector) => {
+      return new Promise((resolve) => {
+        const checkExist = setInterval(() => {
+          const element = document.querySelector(selector);
+          if (element) {
+            clearInterval(checkExist);
+            resolve(element);
+          }
+        }, 100); // Check every 100ms
+      });
+    };
+
+    // Wait for the navBarHeight element to be available
+    const navBar = await waitForElement('.liquid');
+    const navBarHeight = navBar.offsetHeight;
     const bookmarkBarHeight = 10; // Adjust based on the average bookmark bar height
 
     const adjustedHeight = window.innerHeight - navBarHeight - bookmarkBarHeight;
     document.documentElement.style.setProperty('--adjusted-height', `${adjustedHeight}px`);
 
-    const videoElement = document.querySelector('.this-vid'); // Replace with your video element selector
-    if (videoElement) {
-      const videoHeight = videoElement.offsetHeight;
-      const excessHeight = videoHeight - adjustedHeight - 50;
+    // Wait for the video element to be available
+    const videoElement = await waitForElement('.this-vid'); // Replace with your video element selector
+    const videoHeight = videoElement.offsetHeight;
+    const excessHeight = videoHeight - adjustedHeight - 50;
 
-      if (excessHeight > 0) {
-        videoElement.style.transform = `translateY(-${excessHeight}px)`;
-      } else {
-        videoElement.style.transform = 'translateY(0)';
-      }
+    if (excessHeight > 0) {
+      videoElement.style.transform = `translateY(-${excessHeight}px)`;
+    } else {
+      videoElement.style.transform = 'translateY(0)';
     }
   }
 
@@ -961,11 +976,11 @@ function Landing() {
                 <div className="overlay-box" >
                   <div className="bottom" >
                     <div className="btn-wrapper">
-                      <a href='/mainframe'>
+                      <Link to='/mainframe'>
                         <button style={{ fontFamily: "termin-font", marginBottom: "10px", }}>
                           <img src={enterDappImg} style={{ width: "145px", height: "20px", marginTop: "6px", alignContent: "center", border: "white" }}></img>
                           <div class="lava" style={{ border: "5px", borderColor: "white" }}></div></button>
-                      </a>
+                      </Link>
                     </div>
                   </div>
                 </div>

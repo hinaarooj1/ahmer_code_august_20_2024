@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import "../assets/navbars.css";
 import music from "../assets/music/music.mp3";
 // Import images and music
+
 import logo from "../assets/logo/r1000logo.png";
 import presaleImg from "../assets/navpics/nav-presale.png";
 import memenatorImg from "../assets/navpics/nav-tokenomics.png";
@@ -22,14 +23,18 @@ import PHWallet from "./wallet";
 import Modal from "./modal.js";
 import { styled } from 'styled-components';
 import whitePaperPDF from "../assets/whitepaper-unfinished.pdf";
+import { useMusic } from "../utils/MusicContext.js";
 
 const Navbar = ({ handleScrollToFrequencyQuestion, handleScrollToPresale, handleScrollToTokenomics, handleScrollToDapp, handleScrollToRoadmap }) => {
   const navigate = useNavigate();
+
+  const audioRef = useMusic();
+
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isMusicPlaying, setIsMusicPlaying] = useState(true); // Set to true to start playing by default
-  const audioRef = useRef(new Audio(music));
+
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [musicStatus, setMusicStatus] = useState(false);
+  const [musicStatus, setMusicStatus] = useState(true);
   const divRef = useRef(null);
   const divRef1 = useRef(null);
   useEffect(() => {
@@ -51,11 +56,12 @@ const Navbar = ({ handleScrollToFrequencyQuestion, handleScrollToPresale, handle
     };
   }, []);
   const handleMusicButton = () => {
-    if (musicStatus) {
+    if (!musicStatus) {
       audioRef.current.pause();
     } else {
       audioRef.current.play();
     }
+
     setMusicStatus(!musicStatus);
   }
 
@@ -76,21 +82,7 @@ const Navbar = ({ handleScrollToFrequencyQuestion, handleScrollToPresale, handle
       });
   }
 
-  useEffect(() => {
-    // Automatically play music when the component mounts
-    if (isMusicPlaying) {
-      audioRef.current.play().catch(error => {
-        console.error("Error playing audio:", error);
-        // Optionally handle the case where autoplay is blocked
-      });
-    }
 
-    // Cleanup on unmount
-    return () => {
-      audioRef.current.pause();
-      audioRef.current.currentTime = 0;
-    };
-  }, [isMusicPlaying]);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);

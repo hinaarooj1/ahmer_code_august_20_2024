@@ -45,7 +45,7 @@ export const Staking = () => {
                 <Header2 style={header2Style} />
             </div>
             <div className='Staking-main-box'>
-                <div className='container staking-container '>
+                <div className='container main-staking staking-container '>
                     <div className="staking-con" bis_skin_checked={1}><div className="child-wrap-staking" bis_skin_checked={1}><h2 className="staking-head">Staking</h2><p className="para">
                         Lock in your tokens with the power of the R1000 Prototype, where advanced algorithms forge unstoppable growth. Secure your future in a vault of cybernetic dominance and watch your assets rise with every pulse of the blockchain.
 

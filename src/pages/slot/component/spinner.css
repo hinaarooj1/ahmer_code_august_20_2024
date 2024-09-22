@@ -25,8 +25,11 @@
 .token-credit-value {
     position: absolute;
     top: 353px;
-    z-index: 999;
+    z-index: 0;
+    padding-inline: 30px !important;
+    font-size: 21px !important;
     margin-left: -71px;
+    width: max-content !important;
 }
 
 .greenctx::before {
@@ -196,7 +199,7 @@
     .token-credit-value {
         position: absolute;
         top: 301px;
-        z-index: 999;
+        z-index: 0;
         margin-left: -51px;
     }
 
@@ -298,7 +301,7 @@
     .token-credit-value {
         position: absolute;
         top: 290px;
-        z-index: 999;
+        z-index: 0;
         margin-left: -51px;
     }
 

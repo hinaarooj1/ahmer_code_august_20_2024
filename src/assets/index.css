@@ -237,7 +237,7 @@ body {
   background-color: var(--bs-body-bg);
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
-  cursor: none;
+  cursor: default;
 }
 
 hr {
@@ -16716,7 +16716,7 @@ footer .footer-wrap video {
 }
 
 .middle-button {
-  display: none;
+  display: none !important;
 }
 
 .right-button {
@@ -16729,6 +16729,10 @@ footer .footer-wrap video {
 @media screen and (max-width: 900px) {
   .left img {
     width: 57px !important;
+  }
+
+  .middle-button {
+    display: block !important;
   }
 
   .header-wrap .center,
@@ -18828,8 +18832,24 @@ button {
   text-align: center;
 }
 
+.box-1 .box,
+.box-3 .box, .box-5 .box {
+  max-width: none !important;
+  height: 100%;
+}
+
 .box {
   width: 100% !important;
+  font-family: sharetechmono !important;
+  letter-spacing: 0.5px;
+  width: 30px;
+  height: 71px;
+  max-width: 54px;
+  margin: auto;
+  font-size: 12px;
+  line-height: 18px;
+  /* word-spacing: -4px; */
+  padding: 0;
 }
 
 .spinner-btn,
@@ -20748,6 +20768,7 @@ new */
     width: 95vw;
     height: 80vh;
     gap: 10px;
+    margin-top: 100px;
     align-items: end;
     display: flex;
     flex-direction: column;
@@ -20826,7 +20847,7 @@ new */
 
 .landing-video-container {
   video {
-    max-width: 440px;
+    max-width: 740px;
     height: auto;
     object-fit: fill;
   }

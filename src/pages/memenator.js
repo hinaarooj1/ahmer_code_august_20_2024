@@ -194,7 +194,7 @@ export default function Home() {
         <img src={slotMachine} className="slotbg" />
         <div className="giga-logo text-center">
           {/* <h1>GIGAPOT</h1> */}
-          <button className="token-credit-value btn-double Terminator">100<span></span></button>
+          <button style={{ zIndex: -9 }} className="token-credit-value btn-double Terminator">100<span></span></button>
         </div>
         <br />
         {/* {address ? (
